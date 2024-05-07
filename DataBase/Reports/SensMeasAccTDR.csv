@@ -1,0 +1,16 @@
+Description, Position, Font Name, Font Size, Font Style
+RWR, F5, Calibri,16, Bold
+Radiation, F6, Calibri,12, Bold
+admin, E8, Calibri,11,
+001, I8, Calibri,11,
+20-03-2024, E9, Calibri,11,
+11:00:00, I9, Calibri,11,
+0.2, E12, Calibri,11,
+40, I12, Calibri,11,
+10, E13, Calibri,11,
+-40, I13, Calibri,11,
+359, E14, Calibri,11,
+PULSE, I14, Calibri,11,
+100, E15, Calibri,11,
+500, I15, Calibri,11,
+Sensitivity Measurement Test, F4, Calibri,18, Bold
