@@ -1,14 +1,14 @@
 import datetime
 import random
 import sys
+from time import sleep
 
-import openpyxl
 import pandas as pd
 import pyqtgraph
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QTableWidgetItem, QAbstractItemView, QMessageBox
 from openpyxl.reader.excel import load_workbook
-from openpyxl.styles import Side, Border
+from openpyxl.styles import Side, Border, Alignment, Font
 
 from DataBase.INDXTBDB.AmplAccIndxTableDB import AmplAccIndxTableDB
 from DataBase.INDXTBDB.DOAMeasIndxTableDB import DoaMeasIndxTableDB
@@ -39,10 +39,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
 
 
         # Reports Tab
-        self.CB_System.setDisabled(True)
-        self.PB_Plot.setDisabled(True)
-        self.CB_Test.currentTextChanged.connect(self.SystemDisable)
+
         self.PB_Get.clicked.connect(self.ATECDataRetrieve)
+        self.CB_Test.currentTextChanged.connect(self.SystemDisable)
         self.tableWidget_Reports.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.tableWidget_Reports.horizontalHeader().setStretchLastSection(True)
         #self.dateEdit_To.dateChanged.connect(self.ATECDataRetrieve)
@@ -51,6 +50,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.PB_Plot.clicked.connect(self.TableKeyValue)
         self.PB_Clear.clicked.connect(self.RemoveFilters)
         self.PB_Save.clicked.connect(self.SaveProcess)
+
 
 
         # Buttons
@@ -360,21 +360,21 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
             self.tableWidget_Reports.setRowCount(row + 1)
             for col in range(no_of_cols):
                 self.tableWidget_Reports.setItem(row, col, QTableWidgetItem(dataappend.iloc[row][col]))
+
+    ########################################################################################################################
     ########################################################################################################################
     def SystemDisable(self):
-        if (self.CB_Test.currentText() == 'Frequency Test') or (self.CB_Test.currentText() == 'PulseWidth Test') or (self.CB_Test.currentText() == 'PRI Test') or (self.CB_Test.currentText() == 'Amplitude Test') or (self.CB_Test.currentText() == 'DOA Test') or (self.CB_Test.currentText() == 'Sensitivity Test'):
-            self.CB_System.setDisabled(False)
-            self.PB_Plot.setDisabled(False)
-        else:
+        if self.CB_Test.currentText() == "All":
             self.CB_System.setDisabled(True)
             self.PB_Plot.setDisabled(True)
+        else:
+            self.CB_System.setDisabled(False)
+            self.PB_Plot.setDisabled(False)
     ########################################################################################################################
+
     def TableKeyValue(self):
         self.PlotGraph.clear()
         selRows = self.tableWidget_Reports.selectedRanges()
-        self.PlotGraph.addLegend()
-        self.PlotGraph.setYRange(-100, 100)
-        self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
         if (len(selRows) > 0):
             # print('length of ranges',len(selRanges))
             # selRanges.sort()
@@ -405,6 +405,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setfreqvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
+                self.PlotGraph.addLegend()
+                self.PlotGraph.setYRange(-100, 100)
+                self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setfreqvalue, self.errorvalue,
                                     pen=pyqtgraph.mkPen(color=(self.rgb_full), width=2, style=QtCore.Qt.SolidLine),
                                     name=TableSelection[i])
@@ -417,6 +420,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setpwvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
+                self.PlotGraph.addLegend()
+                self.PlotGraph.setYRange(-100, 100)
+                self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setpwvalue, self.errorvalue,
                                     pen=pyqtgraph.mkPen(color=(self.rgb_full), width=2, style=QtCore.Qt.SolidLine),
                                     name=TableSelection[i])
@@ -429,6 +435,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setanglevalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
+                self.PlotGraph.addLegend()
+                self.PlotGraph.setYRange(-100, 100)
+                self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setanglevalue, self.errorvalue,
                                     pen=pyqtgraph.mkPen(color=(self.rgb_full), width=2, style=QtCore.Qt.SolidLine),
                                     name=TableSelection[i])
@@ -441,6 +450,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setfreqvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
+                self.PlotGraph.addLegend()
+                self.PlotGraph.setYRange(-100, 100)
+                self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setfreqvalue, self.errorvalue,
                                     pen=pyqtgraph.mkPen(color=(self.rgb_full), width=2, style=QtCore.Qt.SolidLine),
                                     name=TableSelection[i])
@@ -454,15 +466,17 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setprivalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
+                self.PlotGraph.addLegend()
+                self.PlotGraph.setYRange(-100, 100)
+                self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setprivalue, self.errorvalue,
                                     pen=pyqtgraph.mkPen(color=(self.rgb_full), width=2, style=QtCore.Qt.SolidLine),
                                     name=TableSelection[i])
-    ####################################################################################################################
     def RemoveFilters(self):
         self.tableWidget_Reports.clear()
         self.tableWidget_Reports.setRowCount(0)
         self.PlotGraph.clear()
-    #####################################################################################################################
+    ####################################################################################################################
     def SaveProcess(self):
         ####################################################
         GetFreqIndexTable = FreqAccIndxTableDB()
@@ -507,10 +521,11 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         sensmeasdataappend.insert(6, "testname", 'Sensitivity Test', True)
         sensmeasdataappend = sensmeasdataappend.astype(str)
         #######################
-        dataappend = pd.concat( [freqdataappend, pwdataappend, pridataappend, ampldataappend, doadataappend, sensmeasdataappend],
+        dataappend = pd.concat(
+            [freqdataappend, pwdataappend, pridataappend, ampldataappend, doadataappend, sensmeasdataappend],
             ignore_index=True)
-        #print(dataappend)
-        dataappend.to_csv("freqaccindxtabledb.csv")
+        # print(dataappend)
+        #dataappend.to_csv("freqaccindxtabledb.csv")
         selRows = self.tableWidget_Reports.selectedRanges()
         if (len(selRows) > 0):
             RowsSelected = []
@@ -521,7 +536,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 for row in range(topRow, bottomRow + 1):
                     RowsSelected.append(row)
                 RowsSelected.sort()
-            #print(RowsSelected)
+            # print(RowsSelected)
 
         TableSelection = []
         for i in range(len(RowsSelected)):
@@ -535,59 +550,77 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 GetFreqTestTable = FreqAccTestTableDB()
                 GetFreqTestTable.GetFreqAccTestTable(testtablename=ForTablename)
 
-                #print(GetFreqTestTable.CurDbTableFreq)
+                # print(GetFreqTestTable.CurDbTableFreq)
                 dfreadtoui = GetFreqTestTable.CurDbTableFreq
                 self.setfreqvalue = dfreadtoui["set_freq"]
                 self.measfreqvalue = dfreadtoui["meas_freq"]
                 self.errorvalue = dfreadtoui["error"]
-                workbook = load_workbook('C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
-                timestamp = datetime.datetime.now()
-                sheetonename = f'''{(self.tableWidget_Reports.item(RowsSelected[i], 6)).text()}'''
+                workbook = load_workbook(
+                    'C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
+                sheetonename = f'''{(TableSelection[i])}'''
                 CurrentRow = self.tableWidget_Reports.currentRow()
-                #print(sheetonename)
+                # print(sheetonename)
                 sheet1 = workbook.active
                 sheet1.title = sheetonename
                 dfRowFil = dataappend.loc[dataappend['test_tab_ref'] == TableSelection[i]]
-                #print(dfRowFil)
+                # print(dfRowFil)
                 datetrim = dfRowFil.iloc[0][0]
-                dateformat=str(datetrim)[:10]
-                timeformat=str(datetrim)[11:19]
-                #print(timeformat)
-                #sheet1['F4'] = self.tableWidget_Reports.item(CurrentRow,6).text()
-                sheet1['F4'] = (self.tableWidget_Reports.item(RowsSelected[i], 6)).text()
-                sheet1['F5'] = (dfRowFil.iloc[0][3]).upper()
-                sheet1['F6'] = dfRowFil.iloc[0][4]
-                sheet1['E8'] = dfRowFil.iloc[0][1]
-                sheet1['E9'] = dateformat
-                sheet1['I8'] = dfRowFil.iloc[0][2]
-                sheet1['I9'] = timeformat
-                sheet1['E12'] = dfRowFil.iloc[0][7]
-                sheet1['E13'] = (dfRowFil.iloc[0][9])
-                sheet1['E14'] = (dfRowFil.iloc[0][12])
-                sheet1['E15'] = (dfRowFil.iloc[0][14])
-                sheet1['I12'] = (dfRowFil.iloc[0][8])
-                sheet1['I13'] = (dfRowFil.iloc[0][11])
-                sheet1['I14'] = (dfRowFil.iloc[0][13])
-                sheet1['I15'] = (dfRowFil.iloc[0][15])
-
-                sheet1['C17'] = 'Set Frequency(MHz)'
-                sheet1['E17'] = 'Measure Frequency(MHz)'
-                sheet1['I17'] = 'Error'
+                dateformat = str(datetrim)[:10]
+                timeformat = str(datetrim)[11:19]
+                # print(timeformat)
+                sheet1['F5'] = (dfRowFil.iloc[0][3]).upper()            #system
+                sheet1['F6'] = dfRowFil.iloc[0][4]                      #mode
+                sheet1['E8'] = dfRowFil.iloc[0][1]                      #name
+                sheet1['E9'] = dateformat                               #date
+                sheet1['E12'] = dfRowFil.iloc[0][7]                     #Start Freq
+                sheet1['E13'] = (dfRowFil.iloc[0][8])                   #Stop Freq
+                sheet1['E14'] = (dfRowFil.iloc[0][9])                   #Step Freq
+                sheet1['E15'] = (dfRowFil.iloc[0][13])                  #Signal Category
+                sheet1['H8'] = dfRowFil.iloc[0][2]                      #System number
+                sheet1['H9'] = timeformat                               #time
+                sheet1['H12'] = (dfRowFil.iloc[0][12])                  #Position Angle
+                sheet1['H13'] = (dfRowFil.iloc[0][14])                  #PW
+                sheet1['H14'] = (dfRowFil.iloc[0][15])                  #PRI
+                sheet1['H15'] = (dfRowFil.iloc[0][11])                  #Set Power
 
                 for i in range(0, len(dfreadtoui)):
-                    #print(len(dfreadtoui))
-                    sheet1[f'''C{18+i}'''] = self.setfreqvalue.values[i]
-                    sheet1[f'''E{18+i}'''] = self.measfreqvalue.values[i]
-                    sheet1[f'''I{18+i}'''] = self.errorvalue.values[i]
-                self.set_border(sheet1, f'''C18:I18''')  # for excel sheet table cell borders
+                    sheet1.merge_cells(start_row=18+i, start_column=3, end_row=18+i, end_column=4)          #Merging C and D cols
+                    sheet1.merge_cells(start_row=18+i, start_column=5, end_row=18+i, end_column=7)          #Merging E to G cols
+                    sheet1.merge_cells(start_row=18+i, start_column=8, end_row=18+i, end_column=9)          #Merging H and I cols
 
-                TestName = self.tableWidget_Reports.item(CurrentRow,6).text()
+                    self.set_border(sheet1, f'''B{18+i}:I{18+i}''')  # for excel sheet table cell borders
+
+                    sheet1[f'''B{18+i}'''] = i+1
+                    sheet1[f'''B{18 + i}'''].alignment = Alignment(horizontal = 'center')                       #Alignment of text center, left or right
+                    sheet1[f'''C{18+i}'''] = self.setfreqvalue.values[i]
+                    sheet1[f'''C{18 + i}'''].alignment = Alignment(horizontal='center')
+                    sheet1[f'''E{18+i}'''] = self.measfreqvalue.values[i]
+                    sheet1[f'''E{18 + i}'''].alignment = Alignment(horizontal='center')
+                    sheet1[f'''H{18+i}'''] = self.errorvalue.values[i]
+                    sheet1[f'''H{18 + i}'''].alignment = Alignment(horizontal='center')
+
+                self.tableposition=18+len(dfreadtoui)+2
+                sheet1.merge_cells(start_row=self.tableposition, start_column=2, end_row=self.tableposition+1, end_column=10)
+                sheet1.merge_cells(start_row=self.tableposition+3, start_column=2, end_row=self.tableposition+4, end_column=10)
+                sheet1.merge_cells(start_row=self.tableposition+6, start_column=2, end_row=self.tableposition+7, end_column=5)
+                sheet1.merge_cells(start_row=self.tableposition+8, start_column=2, end_row=self.tableposition+9, end_column=3)
+                sheet1.merge_cells(start_row=self.tableposition+8, start_column=8, end_row=self.tableposition+9, end_column=10)
+
+                sheet1[f'B{self.tableposition}'] = 'RMS Error :'
+                sheet1[f'B{self.tableposition+3}'] = 'Specification :'
+                sheet1[f'B{self.tableposition+6}'] = 'Status :'
+                sheet1[f'B{self.tableposition+8}'] = 'Tested By'
+                sheet1[f'H{self.tableposition+8}'] = 'Verified By'
+                self.FontSizeStyle = [f'B{self.tableposition}', f'B{self.tableposition + 3}', f'B{self.tableposition + 6}', f'B{self.tableposition + 8}', f'H{self.tableposition + 8}']
+                for i in range(0, len(self.FontSizeStyle)):
+                    sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)                   #font size and style
+
                 # save the file
                 outfile = ForTablename + '.xlsx'
                 workbook.save(filename=outfile)
                 QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
-        ################################################################################################################
-    def set_border(self,worksheet, cell_range):
+    ####################################################################################################################
+    def set_border(self, worksheet, cell_range):
         thin = Side(border_style="thin", color="000000")
         for row in worksheet[cell_range]:
             for cell in row:
@@ -613,6 +646,22 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         x6 = [2, 3, 4, 5, 9, 15, 18, 20]
         y6 = [10, 20, 30, 15, 25, 35, 20, 5]
         self.emitter_polar.plot(x6, y6, pen='g')
+
+        """net_x=[2,3,5,7]
+        net_error=[2,4,5,9]
+        net_polar=[1,9,2,4]
+        net_rfps=[1,9,2,6]
+        self.network_error.plot(net_x,net_error,pen='g')
+        self.network_polar.plot(net_x,net_polar,pen='b')
+        self.networ_rfps.plot(net_x,net_rfps,pen='c')
+
+        view_x = [2, 3, 5, 7,10]
+        view_error = [10, 20, 30, 15, 25]
+        view_polar = [20, 30, 15, 25, 35]
+        view_rfps = [19, 22, 16, 67, 22]
+        self.view_error.plot(view_x, view_error, pen='c')
+        self.view_polar.plot(view_x, view_polar, pen='r')
+        self.view_rfps.plot(view_x, view_rfps, pen='y')"""
 
 ########################################################################################################################
 
