@@ -3,7 +3,7 @@ import datetime
 import pandas as pd
 from PyQt5.QtWidgets import QMessageBox
 from openpyxl.reader.excel import load_workbook
-from openpyxl.styles import Side, Border
+from openpyxl.styles import Side, Border, Alignment, Font
 
 from DataBase.INDXTBDB.AmplAccIndxTableDB import AmplAccIndxTableDB
 from DataBase.INDXTBDB.DOAMeasIndxTableDB import DoaMeasIndxTableDB
@@ -16,7 +16,8 @@ from DataBase.TESTTBDB.FreqAccTestTableDB import FreqAccTestTableDB
 from DataBase.TESTTBDB.PriMeasTestTableDB import PriMeasTestTableDB
 from DataBase.TESTTBDB.PwMeasTestTableDB import PwMeasTestTableDB
 
-def SaveProcess(self, dataappend):
+
+def SaveProcess(self):
     ####################################################
     GetFreqIndexTable = FreqAccIndxTableDB()
     GetFreqIndexTable.SelFreqDateFilter(datefilterfrom=self.dateEdit_From.text(),
@@ -24,7 +25,7 @@ def SaveProcess(self, dataappend):
     freqdataappend = GetFreqIndexTable.FreqDateFil
     freqdataappend.insert(6, "testname", 'Frequency Test', True)
     freqdataappend = freqdataappend.astype(str)
-    #####
+    ########################
     GetPwIndexTable = PwMeasIndxTableDB()
     GetPwIndexTable.SelPwDateFilter(datefilterfrom=self.dateEdit_From.text(),
                                     datefilterto=self.dateEdit_To.text())
@@ -94,9 +95,9 @@ def SaveProcess(self, dataappend):
             self.setfreqvalue = dfreadtoui["set_freq"]
             self.measfreqvalue = dfreadtoui["meas_freq"]
             self.errorvalue = dfreadtoui["error"]
-            workbook = load_workbook('C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
-            timestamp = datetime.datetime.now()
-            sheetonename = f'''{(self.tableWidget_Reports.item(RowsSelected[i], 6)).text()}'''
+            workbook = load_workbook(
+                'C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
+            sheetonename = f'''{(TableSelection[i])}'''
             CurrentRow = self.tableWidget_Reports.currentRow()
             # print(sheetonename)
             sheet1 = workbook.active
@@ -107,43 +108,68 @@ def SaveProcess(self, dataappend):
             dateformat = str(datetrim)[:10]
             timeformat = str(datetrim)[11:19]
             # print(timeformat)
-            # sheet1['F4'] = self.tableWidget_Reports.item(CurrentRow,6).text()
-            sheet1['F4'] = (self.tableWidget_Reports.item(RowsSelected[i], 6)).text()
-            sheet1['F5'] = (dfRowFil.iloc[0][3]).upper()
-            sheet1['F6'] = dfRowFil.iloc[0][4]
-            sheet1['E8'] = dfRowFil.iloc[0][1]
-            sheet1['E9'] = dateformat
-            sheet1['I8'] = dfRowFil.iloc[0][2]
-            sheet1['I9'] = timeformat
-            sheet1['E12'] = dfRowFil.iloc[0][7]
-            sheet1['E13'] = (dfRowFil.iloc[0][9])
-            sheet1['E14'] = (dfRowFil.iloc[0][12])
-            sheet1['E15'] = (dfRowFil.iloc[0][14])
-            sheet1['I12'] = (dfRowFil.iloc[0][8])
-            sheet1['I13'] = (dfRowFil.iloc[0][11])
-            sheet1['I14'] = (dfRowFil.iloc[0][13])
-            sheet1['I15'] = (dfRowFil.iloc[0][15])
-            if self.tableWidget_Reports.item(RowsSelected[i], 6).text() == 'Frequency Test':
-                sheet1['C17'] = 'Set Frequency(MHz)'
-                sheet1['E17'] = 'Measure Frequency(MHz)'
-            elif self.tableWidget_Reports.item(RowsSelected[i], 6).text() == 'Pulse Width Test':
-                sheet1['C17'] = 'Set Frequency(MHz)'
-                sheet1['E17'] = 'Measure Frequency(MHz)'
-            sheet1['I17'] = 'Error'
-            for i in range(0, len(dfreadtoui)):
-                # print(len(dfreadtoui))
-                sheet1[f'''C{18 + i}'''] = self.setfreqvalue.values[i]
-                sheet1[f'''E{18 + i}'''] = self.measfreqvalue.values[i]
-                sheet1[f'''I{18 + i}'''] = self.errorvalue.values[i]
-            self.set_border(sheet1, f'''C18:I18''')  # for excel sheet table cell borders
+            sheet1['F5'] = (dfRowFil.iloc[0][3]).upper()  # system
+            sheet1['F6'] = dfRowFil.iloc[0][4]  # mode
+            sheet1['E8'] = dfRowFil.iloc[0][1]  # name
+            sheet1['E9'] = dateformat  # date
+            sheet1['E12'] = dfRowFil.iloc[0][7]  # Start Freq
+            sheet1['E13'] = (dfRowFil.iloc[0][8])  # Stop Freq
+            sheet1['E14'] = (dfRowFil.iloc[0][9])  # Step Freq
+            sheet1['E15'] = (dfRowFil.iloc[0][13])  # Signal Category
+            sheet1['H8'] = dfRowFil.iloc[0][2]  # System number
+            sheet1['H9'] = timeformat  # time
+            sheet1['H12'] = (dfRowFil.iloc[0][12])  # Position Angle
+            sheet1['H13'] = (dfRowFil.iloc[0][14])  # PW
+            sheet1['H14'] = (dfRowFil.iloc[0][15])  # PRI
+            sheet1['H15'] = (dfRowFil.iloc[0][11])  # Set Power
 
-            TestName = self.tableWidget_Reports.item(CurrentRow, 6).text()
+            for i in range(0, len(dfreadtoui)):
+                sheet1.merge_cells(start_row=18 + i, start_column=3, end_row=18 + i,
+                                   end_column=4)  # Merging C and D cols
+                sheet1.merge_cells(start_row=18 + i, start_column=5, end_row=18 + i,
+                                   end_column=7)  # Merging E to G cols
+                sheet1.merge_cells(start_row=18 + i, start_column=8, end_row=18 + i,
+                                   end_column=9)  # Merging H and I cols
+
+                self.set_border(sheet1, f'''B{18 + i}:I{18 + i}''')  # for excel sheet table cell borders
+
+                sheet1[f'''B{18 + i}'''] = i + 1
+                sheet1[f'''B{18 + i}'''].alignment = Alignment(
+                    horizontal='center')  # Alignment of text center, left or right
+                sheet1[f'''C{18 + i}'''] = self.setfreqvalue.values[i]
+                sheet1[f'''C{18 + i}'''].alignment = Alignment(horizontal='center')
+                sheet1[f'''E{18 + i}'''] = self.measfreqvalue.values[i]
+                sheet1[f'''E{18 + i}'''].alignment = Alignment(horizontal='center')
+                sheet1[f'''H{18 + i}'''] = self.errorvalue.values[i]
+                sheet1[f'''H{18 + i}'''].alignment = Alignment(horizontal='center')
+
+            self.tableposition = 18 + len(dfreadtoui) + 2
+            sheet1.merge_cells(start_row=self.tableposition, start_column=2, end_row=self.tableposition + 1,
+                               end_column=10)
+            sheet1.merge_cells(start_row=self.tableposition + 3, start_column=2, end_row=self.tableposition + 4,
+                               end_column=10)
+            sheet1.merge_cells(start_row=self.tableposition + 6, start_column=2, end_row=self.tableposition + 7,
+                               end_column=5)
+            sheet1.merge_cells(start_row=self.tableposition + 8, start_column=2, end_row=self.tableposition + 9,
+                               end_column=3)
+            sheet1.merge_cells(start_row=self.tableposition + 8, start_column=8, end_row=self.tableposition + 9,
+                               end_column=10)
+
+            sheet1[f'B{self.tableposition}'] = 'RMS Error :'
+            sheet1[f'B{self.tableposition + 3}'] = 'Specification :'
+            sheet1[f'B{self.tableposition + 6}'] = 'Status :'
+            sheet1[f'B{self.tableposition + 8}'] = 'Tested By'
+            sheet1[f'H{self.tableposition + 8}'] = 'Verified By'
+            self.FontSizeStyle = [f'B{self.tableposition}', f'B{self.tableposition + 3}', f'B{self.tableposition + 6}',
+                                  f'B{self.tableposition + 8}', f'H{self.tableposition + 8}']
+            for i in range(0, len(self.FontSizeStyle)):
+                sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
+
             # save the file
             outfile = ForTablename + '.xlsx'
             workbook.save(filename=outfile)
             QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
     ################################################################################################################
-
 
 def set_border(self, worksheet, cell_range):
     thin = Side(border_style="thin", color="000000")

@@ -70,36 +70,10 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.PB_View.clicked.connect(lambda :self.stackedWidget_2.setCurrentWidget(self.View_Graphs))
         self.PB_Help.clicked.connect(lambda:self.stackedWidget_2.setCurrentWidget(self.Help_Docs))
 
-        # File Browser
-        self.PB_Report_PC.clicked.connect(self.file_open)
-
-        # Graphs
-        self.sys_error = self.SYS_ErrorGraph.addPlot(row=0, col=0)
-        self.sys_polar = self.SYS_PolarPlot.addPlot(row=0, col=0)
-
-        self.subsys_error = self.SUBSYS_ErrorGraph.addPlot(row=0, col=0)
-        self.subsys_polar = self.SUBSYS_PolarPlot.addPlot(row=0, col=0)
-
-        self.emitter_error = self.Emitter_ErrorGraph.addPlot(row=0, col=0)
-        self.emitter_polar = self.Emitter_PolarPlot.addPlot(row=0, col=0)
-
-        self.network_error = self.Network_ErrorGraph.addPlot(row=0, col=0)
-        self.network_polar = self.Network_PolarPlot.addPlot(row=0, col=0)
-        self.networ_rfps = self.Network_RFPSGraph.addPlot(row=0, col=0)
-
-
-        self.view_error=self.View_ErrorGraph.addPlot(row=0, col=0)
-        self.view_polar=self.View_PolarPlot.addPlot(row=0, col=0)
-        #self.view_rfps=self.View_RFPSGraph.addPlot(row=0, col=0)
-
-        self.Add.clicked.connect(self.Sys_Add)
-
-        # Current date and time display to label
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.showTime)
         self.timer.start()
 
-        self.graph_plot()
 
 ########################################################################################################################
     def showTime(self):
@@ -107,77 +81,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.timeDisplay=self.time.toString('yyyy-MM-dd hh:mm:ss dddd')
         self.label_date.setText(self.timeDisplay)
 
-#######################################################################################################################
-    def Sys_Add(self):
-        if self.ESM.isChecked():
-            if self.Injection.isChecked():
 
-                if self.Frequency.isChecked():
-                    self.listWidget_test.addItem("ESM Injection Frequency Test")
-                    print("ESM Injection Frequency Test")
-
-                elif self.Amplitude.isChecked():
-                    self.listWidget_test.addItem("ESM Injection Amplitude Test")
-                    print("ESM Injection Amplitude Test")
-
-                elif self.Sensitivity.isChecked():
-                    self.listWidget_test.addItem("ESM Injection Sensitivity Test")
-                    print("ESM Injection Sensitivity Test")
-
-                elif self.PW.isChecked():
-                    self.listWidget_test.addItem("ESM Injection PW Test")
-                    print("ESM Injection PW Test")
-
-                elif self.PRI.isChecked():
-                    self.listWidget_test.addItem("ESM Injection PRI Test")
-                    print("ESM Injection PRI Test")
-
-                elif self.DOA.isChecked():
-                    self.listWidget_test.addItem("ESM Injection DOA Test")
-                    print("ESM Injection DOA Test")
-                else:
-                    print("Select Test")
-
-            elif self.Radiation.isChecked():
-
-                if self.Frequency.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation Frequency Test")
-                    print("ESM Radiation Frequency Test")
-
-                elif self.Amplitude.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation Amplitude Test")
-                    print("ESM Radiation Amplitude Test")
-
-                elif self.Sensitivity.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation Sensitivity Test")
-                    print("ESM Radiation Sensitivity Test")
-
-                elif self.PW.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation PW Test")
-                    print("ESM Radiation PW Test")
-
-                elif self.PRI.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation PRI Test")
-                    print("ESM Radiation PRI Test")
-
-                elif self.DOA.isChecked():
-                    self.listWidget_test.addItem("ESM Radiation DOA Test")
-                    print("ESM Radiation DOA Test")
-
-                else:
-                    print("Select Test")
-
-            else:
-                print("Select any Mode")
-        else:
-            print("Select any System")
-
-########################################################################################################################
-    def file_open(self):
-        filenames,_=QFileDialog.getOpenFileNames(self,"Select a file",'',"All Files (*)")
-        if filenames:
-            print(filenames)
-            self.listWidget_Reports.addItems([str(filename) for filename in filenames ])
 ########################################################################################################################
 ########################################################################################################################
     def ATECDataRetrieve(self):
@@ -625,43 +529,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         for row in worksheet[cell_range]:
             for cell in row:
                 cell.border = Border(top=thin, left=thin, right=thin, bottom=thin)
-    def graph_plot(self):
-        x1 = [2, 3, 4, 5]
-        y1 = [10, 20, 15, 5]
-        self.sys_error.plot(x1, y1, pen='r')
-        x2 = [2, 3, 4, 5, 9, 15, 18, 20]
-        y2 = [19, 22, 16, 67, 22, 34, 45, 100]
-        self.sys_polar.plot(x2, y2, pen='y')
-
-        x3 = [2, 3, 4, 5]
-        y3 = [5, 25, 2, 45]
-        self.subsys_error.plot(x3, y3, pen='m')
-        x4 = [2, 3, 4, 5, 9, 15, 18, 20]
-        y4 = [10, 20, 30, 15, 25, 35, 20, 5]
-        self.subsys_polar.plot(x4, y4, pen='c')
-
-        x5 = [2, 3, 4, 5]
-        y5 = [5, 25, 2, 45]
-        self.emitter_error.plot(x5, y5, pen='c')
-        x6 = [2, 3, 4, 5, 9, 15, 18, 20]
-        y6 = [10, 20, 30, 15, 25, 35, 20, 5]
-        self.emitter_polar.plot(x6, y6, pen='g')
-
-        """net_x=[2,3,5,7]
-        net_error=[2,4,5,9]
-        net_polar=[1,9,2,4]
-        net_rfps=[1,9,2,6]
-        self.network_error.plot(net_x,net_error,pen='g')
-        self.network_polar.plot(net_x,net_polar,pen='b')
-        self.networ_rfps.plot(net_x,net_rfps,pen='c')
-
-        view_x = [2, 3, 5, 7,10]
-        view_error = [10, 20, 30, 15, 25]
-        view_polar = [20, 30, 15, 25, 35]
-        view_rfps = [19, 22, 16, 67, 22]
-        self.view_error.plot(view_x, view_error, pen='c')
-        self.view_polar.plot(view_x, view_polar, pen='r')
-        self.view_rfps.plot(view_x, view_rfps, pen='y')"""
 
 ########################################################################################################################
 
