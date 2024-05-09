@@ -170,4 +170,4 @@ def SaveProcess(self):
                 # save the file
                 outfile = ForTablename + '.xlsx'
                 workbook.save(filename=outfile)
-                QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
+                QMessageBox.information(self, "Self Test", "ReportsBin Saved to " + outfile)

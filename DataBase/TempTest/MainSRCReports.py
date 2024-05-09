@@ -13,7 +13,7 @@ from DataBase.INDXTBDB.PWMeasIndxTableDB import PwMeasIndxTableDB
 from DataBase.INDXTBDB.SensMeasAccIndxTableDB import SensMeasIndxTableDB
 from DataBase.TESTTBDB.FreqAccTestTableDB import FreqAccTestTableDB
 from DataBase.TESTTBDB.PwMeasTestTableDB import PwMeasTestTableDB
-from DataBase.MainSRC import Ui_ATEC_App
+from MainSrc.MainSRC import Ui_ATEC_App
 
 ########################################################################################################################
 class MainGUI(QMainWindow, Ui_ATEC_App):
@@ -29,7 +29,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.frame_NET_PolarPlot.setDisabled(True)
 
 
-        # Reports Tab
+        # ReportsBin Tab
 
         self.PB_Get.clicked.connect(self.ATECDataRetrieve)
         self.tableWidget.setEditTriggers(QAbstractItemView.NoEditTriggers)

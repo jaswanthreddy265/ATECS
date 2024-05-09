@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainSRC.ui'
+# Form implementation generated from reading ui file 'MainSrc.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from DataBase.AnalogGaugeWidget import AnalogGaugeWidget
+from MainSrc.AnalogGaugeWidget import AnalogGaugeWidget
 
 
 class Ui_ATEC_App(object):
@@ -3565,7 +3565,6 @@ class Ui_ATEC_App(object):
         self.label_10.setText(_translate("ATEC_App", "Position"))
         self.label_27.setText(_translate("ATEC_App", "TestSequenceParameters"))
         self.label_13.setText(_translate("ATEC_App", "Status/Message"))
-#from AnalogGaugeWidget import AnalogGaugeWidget
 from pyqtgraph import GraphicsLayoutWidget
 
 

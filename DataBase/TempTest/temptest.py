@@ -96,7 +96,7 @@ def SaveProcess(self):
             self.measfreqvalue = dfreadtoui["meas_freq"]
             self.errorvalue = dfreadtoui["error"]
             workbook = load_workbook(
-                'C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
+                '/Resources/Templates/FreqAccTestTemplate.xlsx')
             sheetonename = f'''{(TableSelection[i])}'''
             CurrentRow = self.tableWidget_Reports.currentRow()
             # print(sheetonename)
@@ -168,7 +168,7 @@ def SaveProcess(self):
             # save the file
             outfile = ForTablename + '.xlsx'
             workbook.save(filename=outfile)
-            QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
+            QMessageBox.information(self, "Self Test", "ReportsBin Saved to " + outfile)
     ################################################################################################################
 
 def set_border(self, worksheet, cell_range):

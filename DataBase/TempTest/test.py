@@ -1,12 +1,10 @@
-import datetime
 import random
 import sys
-from time import sleep
 
 import pandas as pd
 import pyqtgraph
 from PyQt5 import QtCore
-from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QTableWidgetItem, QAbstractItemView, QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QApplication, QTableWidgetItem, QAbstractItemView, QMessageBox
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import Side, Border, Alignment, Font
 
@@ -20,7 +18,7 @@ from DataBase.TESTTBDB.DoaMeasTestTableDB import DoaMeasTestTableDB
 from DataBase.TESTTBDB.FreqAccTestTableDB import FreqAccTestTableDB
 from DataBase.TESTTBDB.PriMeasTestTableDB import PriMeasTestTableDB
 from DataBase.TESTTBDB.PwMeasTestTableDB import PwMeasTestTableDB
-from DataBase.MainSRC import Ui_ATEC_App
+from MainSrc.MainSRC import Ui_ATEC_App
 from DataBase.TESTTBDB.SensMeasTestTableDB import SensMeasTestTableDB
 
 
@@ -38,7 +36,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.frame_NET_PolarPlot.setDisabled(True)
 
 
-        # Reports Tab
+        # ReportsBin Tab
 
         self.PB_Get.clicked.connect(self.ATECDataRetrieve)
         self.CB_Test.currentTextChanged.connect(self.SystemDisable)
@@ -460,7 +458,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.measfreqvalue = dfreadtoui["meas_freq"]
                 self.errorvalue = dfreadtoui["error"]
                 workbook = load_workbook(
-                    'C:/Users/jaswa/PycharmProjects/ATEC1/DataBase/Templates/FreqAccTestTemplate.xlsx')
+                    '/Resources/Templates/FreqAccTestTemplate.xlsx')
                 sheetonename = f'''{(TableSelection[i])}'''
                 CurrentRow = self.tableWidget_Reports.currentRow()
                 # print(sheetonename)
@@ -522,7 +520,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 # save the file
                 outfile = ForTablename + '.xlsx'
                 workbook.save(filename=outfile)
-                QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
+                QMessageBox.information(self, "Self Test", "ReportsBin Saved to " + outfile)
     ####################################################################################################################
     def set_border(self, worksheet, cell_range):
         thin = Side(border_style="thin", color="000000")

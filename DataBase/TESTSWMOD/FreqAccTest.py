@@ -281,7 +281,7 @@ class FreqAccTestMain(QMainWindow, Ui_FreqAccTestP):
         # save the file
         outfile = sysnamecache +"FreqAcc" + datetime.datetime.now().strftime('%d_%m_%Y_%H_%M_%S') + '.xlsx'
         workbook.save(filename=outfile)
-        QMessageBox.information(self, "Self Test", "Reports Saved to " + outfile)
+        QMessageBox.information(self, "Self Test", "ReportsBin Saved to " + outfile)
     ####################################################################################################################
     def set_border(self,worksheet, cell_range):
         thin = Side(border_style="thin", color="000000")

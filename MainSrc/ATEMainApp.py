@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 
 from loginDlg import LoginDlg
 
-from DataBase.MainSRC import Ui_ATEC_App
+from MainSRC.MainSRC import Ui_ATEC_App
 from MainSRCWin import MainGUI
 
 ########################################################################################################################

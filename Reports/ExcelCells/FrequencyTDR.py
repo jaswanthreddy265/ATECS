@@ -1,0 +1,22 @@
+F4               =       'FREQUENCY ACCURACY TEST'
+#F5              =       'SYSTEM'
+#F6              =       'MODE'
+
+#E8               =       'NAME'
+#E9               =       'DATE'
+#H8               =       'SYSTEM NUMBER'
+#H9               =       'TIME'
+
+E12              =       'START FREQUENCY'
+E13              =       'STOP FREQUENCY'
+E14              =       'STEP FREQUENCY'
+E15              =       'SIGNAL CATEGORY'
+H12              =       'POS'
+H13              =       'PW'
+H14              =       'PRI'
+H15              =       'SET POWER'
+
+B16              =       'S.No'
+C16              =       'START FREQUENCY (MHz)'
+E16              =       'mEASURED FREQUENCY (MHz)'
+I16              =       'ERROR'
