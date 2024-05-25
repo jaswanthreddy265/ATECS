@@ -1,13 +1,11 @@
-import random
 from datetime import datetime
 from time import sleep
 
 import pandas as pd
-from tqdm import tqdm
 import psycopg2
 
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import DATABASE_CONNECTION_ERROR, SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 ########################################################################################################################
 #   Sensitivity Measurement Test Table Database Class and Member Functions
 #   Author  :   Bandi Jaswanth Reddy
@@ -38,7 +36,7 @@ class SensMeasTestTableDB():
             cursor = self.connestablish.cursor()
             create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
                                      (
-                                         set_sens          FLOAT        NOT NULL,
+                                         set_power         FLOAT        NOT NULL,
                                          meas_sens         FLOAT        NOT NULL,
                                          error             FLOAT        NOT NULL
                                      ); '''
@@ -54,11 +52,11 @@ class SensMeasTestTableDB():
     ####################################################################################################################
     # This Function Adds The Data in Sensitivity Measurement Test Database Table
     ####################################################################################################################
-    def AddSensTestRow(self, senstestvalues={'set_sens' : 4614, 'meas_sens' : 26565, 'error' : 3 }):
+    def AddSensTestRow(self, senstestvalues={'set_power' : 4614, 'meas_sens' : 26565, 'error' : 3 }):
       #  print("AddSensRow")
         try:
             cursor = self.connestablish.cursor()
-            insert_table_query = f'''INSERT INTO {self.tablename} VALUES('{senstestvalues['set_sens']}','{senstestvalues['meas_sens']}',
+            insert_table_query = f'''INSERT INTO {self.tablename} VALUES('{senstestvalues['set_power']}','{senstestvalues['meas_sens']}',
                                      '{senstestvalues['error']}'  '''
             insert_table_query = insert_table_query + ');'
             cursor.execute(insert_table_query)
@@ -107,11 +105,23 @@ class SensMeasTestTableDB():
 ########################################################################################################################
 if __name__ == "__main__":
     sensmeastestdb = SensMeasTestTableDB(Debug=False)
-    """timestamp = datetime.now()
-    #sensmeastestdb.tablename =  f'''sensmeastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
-    sensmeastestdb.CreateSensMeasTestTableDB()"""
+    timestamp = datetime.now()
+    sensmeastestdb.tablename =  f'''rfpssensmeastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+    print(sensmeastestdb.tablename)
+    sensmeastestdb.CreateSensMeasTestTableDB()
 
+    newrow = {'set_power': 4614, 'meas_sens': 26565, 'error': 5}
+    start_sens = -100
+    stop_sens =50
+    while start_sens <= stop_sens:
+        print(start_sens)
+        sleep(0)
+        newrow['set_power'] = start_sens
+        newrow['meas_sens'] = newrow['set_power'] - 55
+        newrow['error'] = newrow['set_power'] - newrow['meas_sens']
 
+        sensmeastestdb.AddSensTestRow(senstestvalues=newrow)
+        start_sens += 2
     """newrow = {'set_sens' : 4614, 'meas_sens' : 26565, 'error':5}
     for i in tqdm(range(0,100)):
         sleep(0)
@@ -120,8 +130,8 @@ if __name__ == "__main__":
         newrow['error']=newrow['set_sens']-newrow['meas_sens']
         sensmeastestdb.AddSensTestRow(senstestvalues=newrow)"""
 
-    sensmeastestdb.GetSensMeasTestTable(testtablename="rfpssensmeastest_2024_04_26_11_53_59")
+    #sensmeastestdb.GetSensMeasTestTable(testtablename="rfpssensmeastest_2024_04_26_11_53_59")
     #sensmeastestdb.CurDbTableSens.to_csv("sensmeastest_2024_03_24_11_41_05.csv")
-    print(sensmeastestdb.CurDbTableSens)
+    #print(sensmeastestdb.CurDbTableSens)
     #sensmeastestdb.DropSensMeasTestTable(deletetable="esmsensmeastest_2024_04_15_14_52_52")
     sensmeastestdb.close()

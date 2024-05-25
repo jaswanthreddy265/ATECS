@@ -1,11 +1,8 @@
 import pandas as pd
 import datetime
 import psycopg2
-import random
-from time import sleep
-from tqdm import tqdm
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 
 ########################################################################################################################
@@ -107,34 +104,20 @@ class PriMeasIndxTableDB():
             self.PriCurDbTable = pd.read_sql_query(
                 f'''SELECT * FROM primeasindxtable ''',
                 con=self.connestablish)
-            # print(self.PriCurDbTable)
+            print(self.PriCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to primeasindxtable ", error)
-
-    """####################################################################################################################
-    # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
+    # This Function Gets The Frequency Accuracy Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def GetPriRowRecord(self, select_record='esmprimeastest_2024_04_30_15_50_45'):
         try:
-            self.PriDateFil = pd.read_sql_query(
-                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM primeasindxtable WHERE date BETWEEN 
-                '{datefilterfrom}' AND '{datefilterto}' ''',
+            self.GetPriIndxRowRecord = pd.read_sql_query(
+                f'''SELECT * FROM primeasindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
-            print(self.PriDateFil)
+            print(self.GetPriIndxRowRecord)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to primeasindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def SelPriDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
-        try:
-            self.PriIndxDateFil = pd.read_sql_query(
-                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
-                con=self.connestablish)
-            print(self.PriIndxDateFil)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to primeasindxtable ", error)
-    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading
@@ -144,7 +127,7 @@ class PriMeasIndxTableDB():
             self.PriDateFil = pd.read_sql_query(
                 f'''SELECT * FROM primeasindxtable WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
                 con=self.connestablish)
-            #print(self.PriDateFil)
+            print(self.PriDateFil)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to primeasindxtable ", error)
 
@@ -203,12 +186,12 @@ if __name__ == "__main__":
     print(type(pri_list_str))
     deser_pri = json.loads(pri_list_str)
     print(type(deser_pri[0]))"""
-    newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warnerprimeastest_2024_04_15_14_52_57', 'start_pri' : 500, 'stop_pri' : 1000,
-              'step_pri' : 50, 'pri_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
+    newrow = {'date' : datetime.datetime.now(),'username' : 'Madhavi',  'system_id' : 2, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpsprimeastest_2024_05_18_14_47_12', 'start_pri' : 40, 'stop_pri' : 500,
+              'step_pri' : 5, 'pri_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
               'freq' : 1, 'ampl' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
 
-    for i in tqdm(range(0,5)):
+    """for i in tqdm(range(0,5)):
         sleep(0)
         newrow['date']= datetime.datetime.now()
 
@@ -230,7 +213,8 @@ if __name__ == "__main__":
         newrow['ampl'] = random.randrange(-30, 0)
         newrow['rms_error'] = random.randrange(0, 100)
         newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        primeasdb.AddPriRecord(usercred=newrow)
+        primeasdb.AddPriRecord(usercred=newrow)"""
+    primeasdb.AddPriRecord(usercred=newrow)
 
     """for i in tqdm(range(0,30)):
         primeasdb.DeletePriRecord(table_ref_id=f'''pri_meas_test_{i}''')
@@ -239,8 +223,8 @@ if __name__ == "__main__":
     primeasdb.CurDbTable.to_csv("primeasindxtabledb.csv")
     print(primeasdb.PriCurDbTable)
     primeasdb.DropPriIndxTable(deletetable="")"""
-    primeasdb.GetPriMeasIndxTable()
-    # primeasdb.SelPriDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
+    #primeasdb.GetPriMeasIndxTable()
+    #primeasdb.SelPriDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     # primeasdb.SelPriDateSysFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26", sysfilter='rwr')
     primeasdb.PriIndxDbConClose()
 

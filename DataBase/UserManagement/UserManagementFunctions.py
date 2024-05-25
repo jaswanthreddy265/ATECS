@@ -1,5 +1,5 @@
 import datetime
-from DataBase.TestCases.ErrorCodesDatabase import *
+from DataBase.UserManagement.ErrorCodesDatabase import *
 from UserManagementDB import UserManagementDB
 ########################################################################################################################
 #   User Management Functions Database Class and its Functions

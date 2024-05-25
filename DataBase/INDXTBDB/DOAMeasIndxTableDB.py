@@ -1,11 +1,8 @@
-import random
-from time import sleep
-from tqdm import tqdm
 import pandas as pd
 import datetime
 import psycopg2
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 
 ########################################################################################################################
@@ -107,34 +104,20 @@ class DoaMeasIndxTableDB():
             self.DoaCurDbTable = pd.read_sql_query(
                 f'''SELECT * FROM doameasindxtable ''',
                 con=self.connestablish)
-            # print(self.DoaCurDbTable)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to doameasindxtable ", error)
-
-    """####################################################################################################################
-    # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
-        try:
-            self.DoaDateFil = pd.read_sql_query(
-                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM doameasindxtable WHERE date BETWEEN 
-                '{datefilterfrom}' AND '{datefilterto}' ''',
-                con=self.connestablish)
-            print(self.DoaDateFil)
+            print(self.DoaCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to doameasindxtable ", error)
     ####################################################################################################################
     # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    def SelDoaDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
+    def GetDoaRowRecord(self, select_record='esmdoameastest_2024_04_30_15_50_45'):
         try:
-            self.DoaIndxDateFil = pd.read_sql_query(
-                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
+            self.GetDoaIndxRowRecord = pd.read_sql_query(
+                f'''SELECT * FROM doameasindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
-            print(self.DoaIndxDateFil)
+            print(self.GetDoaIndxRowRecord)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to doameasindxtable ", error)
-    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
@@ -203,12 +186,12 @@ if __name__ == "__main__":
     print(type(doa_list_str))
     deser_doa = json.loads(doa_list_str)
     print(type(deser_doa[0]))"""
-    newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warnerdoameastest_2024_04_15_14_52_57', 'start_doa' : 500, 'stop_doa' : 1000,
-              'step_doa' : 50, 'doa_list' : '', 'set_power' : -30, 'freq' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
+    newrow = {'date' : datetime.datetime.now(),'username' : 'Madhavi',  'system_id' : 1, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpsdoameastest_2024_05_18_15_15_04', 'start_doa' : -90, 'stop_doa' : 83,
+              'step_doa' : 1.7, 'doa_list' : '', 'set_power' : -30, 'freq' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
               'pri' : 1, 'ampl' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
 
-    for i in tqdm(range(0,5)):
+    """for i in tqdm(range(0,5)):
         sleep(0)
         newrow['date']= datetime.datetime.now()
 
@@ -229,17 +212,17 @@ if __name__ == "__main__":
         newrow['pri']=random.randrange(0,1000)
         newrow['ampl'] = random.randrange(-30, 0)
         newrow['rms_error'] = random.randrange(0, 100)
-        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        doameasdb.AddDoaRecord(usercred=newrow)
+        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])"""
+    doameasdb.AddDoaRecord(usercred=newrow)
 
     """for i in tqdm(range(0,30)):
         doameasdb.DeleteDoaRecord(table_ref_id=f'''doa_meas_test_{i}''')
-    doameasdb.DeleteDoaRecord(table_ref_id='warnerdoameastest_2024_04_15_14_52_80')
+    doameasdb.DeleteDoaRecord(table_ref_id='rfpsdoameastest_2024_05_09_17_17_01')
     doameasdb.getdoameasindxtable()
     doameasdb.CurDbTable.to_csv("doameasindxtabledb.csv")
     print(doameasdb.DoaCurDbTable)
     doameasdb.DropDoaIndxTable(deletetable="")"""
-    doameasdb.GetDoaMeasIndxTable()
+    #doameasdb.GetDoaMeasIndxTable()
     # doameasdb.SelDoaDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     # doameasdb.SelDoaDateSysFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26", sysfilter='rwr')
     doameasdb.DoaIndxDbConClose()

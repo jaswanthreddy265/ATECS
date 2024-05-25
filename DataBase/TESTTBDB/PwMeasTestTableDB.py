@@ -3,11 +3,10 @@ from datetime import datetime
 from time import sleep
 
 import pandas as pd
-from tqdm import tqdm
 import psycopg2
 
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import DATABASE_CONNECTION_ERROR, SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 ########################################################################################################################
 #   Pulse Width Measurement Test Table Database Class and Member Functions
 #   Author  :   Bandi Jaswanth Reddy
@@ -107,11 +106,23 @@ class PwMeasTestTableDB():
 ########################################################################################################################
 if __name__ == "__main__":
     pwmeastestdb = PwMeasTestTableDB(Debug=False)
-    """timestamp = datetime.now()
-    #pwmeastestdb.tablename =  f'''pwmeastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
-    pwmeastestdb.CreatePwMeasTestTableDB()"""
+    timestamp = datetime.now()
+    pwmeastestdb.tablename =  f'''rfpspwmeastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+    print(pwmeastestdb.tablename)
+    pwmeastestdb.CreatePwMeasTestTableDB()
 
+    newrow = {'set_pri': 4614, 'meas_pri': 26565, 'error': 5}
+    start_pw = 79
+    stop_pw = 550
+    while start_pw <= stop_pw:
+        print(start_pw)
+        sleep(0)
+        newrow['set_pw'] = start_pw
+        newrow['meas_pw'] = newrow['set_pw'] - random.randrange(-1, 1)
+        newrow['error'] = newrow['set_pw'] - newrow['meas_pw']
 
+        pwmeastestdb.AddPwTestRow(pwtestvalues=newrow)
+        start_pw += 15
     """newrow = {'set_pw' : 4614, 'meas_pw' : 26565, 'error':5}
     for i in tqdm(range(0,100)):
         sleep(0)
@@ -120,8 +131,8 @@ if __name__ == "__main__":
         newrow['error']=newrow['set_pw']-newrow['meas_pw']
         pwmeastestdb.AddPwTestRow(pwtestvalues=newrow)"""
 
-    pwmeastestdb.GetPwMeasTestTable(testtablename="rfpspwmeastest_2024_04_26_11_53_59")
+    #pwmeastestdb.GetPwMeasTestTable(testtablename="rfpspwmeastest_2024_04_26_11_53_59")
     #pwmeastestdb.CurDbTablePw.to_csv("pwmeastest_2024_03_24_11_41_05.csv")
-    print(pwmeastestdb.CurDbTablePw)
+    #print(pwmeastestdb.CurDbTablePw)
     #pwmeastestdb.DropPwTestTable(deletetable="esmpwmeastest_2024_04_15_14_52_52")
     pwmeastestdb.close()

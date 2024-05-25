@@ -1,11 +1,8 @@
 import pandas as pd
 import datetime
 import psycopg2
-import random
-from time import sleep
-from tqdm import tqdm
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 ########################################################################################################################
 #   Frequency Accuracy Test Index Table Database Class and Member Functions
@@ -113,7 +110,7 @@ class FreqAccIndxTableDB():
     ####################################################################################################################
     def GetFreqRowRecord(self, select_record='esmfreqacctest_2024_04_30_15_50_45'):
         try:
-            self.GetFreqRowRecord = pd.read_sql_query(
+            self.GetFreqIndxRowRecord = pd.read_sql_query(
                 f'''SELECT * FROM freqaccindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
             print(self.GetFreqRowRecord)
@@ -177,20 +174,16 @@ class FreqAccIndxTableDB():
     ###################################################################################################################
 if __name__ == "__main__":
     freqaccdb = FreqAccIndxTableDB(Debug=True)
-    freqaccdb.tablename = 'freqaccindxtable'
-    #freqaccdb.CreateFreqAccIndxTableDB()
+    freqaccdb.tablename = 'freqaccindxtableghdjt'
+    freqaccdb.CreateFreqAccIndxTableDB()
 
-    freqaccdb.GetFreqRowRecord(select_record='esmfreqacctest_2024_04_30_15_50_45')    #freq_list = [123.6,167,189]
-    """freq_list_str=json.dumps(freq_list)
-    print(type(freq_list_str))
-    deser_freq = json.loads(freq_list_str)
-    print(type(deser_freq[0]))"""
-    """newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warnerfreqacctest_2024_04_15_14_52_57', 'start_freq' : 500, 'stop_freq' : 1000,
-              'step_freq' : 50, 'freq_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
+    #freqaccdb.GetFreqRowRecord(select_record='esmfreqacctest_2024_04_30_15_50_45')    #freq_list = [123.6,167,189]
+    newrow = {'date' : datetime.datetime.now(),'username' : 'ntr',  'system_id' : 10, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpsfreqacctest_2024_05_18_13_08_38', 'start_freq' : 1000, 'stop_freq' : 30000,
+              'step_freq' : 600, 'freq_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
               'pri' : 1, 'ampl' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
 
-    for i in tqdm(range(0,100)):
+    """for i in tqdm(range(0,100)):
         sleep(0)
         newrow['date']= datetime.datetime.now()
         
@@ -211,8 +204,8 @@ if __name__ == "__main__":
         newrow['pri']=random.randrange(0,1000)
         newrow['ampl'] = random.randrange(-30, 0)
         newrow['rms_error'] = random.randrange(0, 100)
-        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        freqaccdb.AddFreqRecord(usercred=newrow)"""
+        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])"""
+    freqaccdb.AddFreqRecord(usercred=newrow)
 
 
     """for i in tqdm(range(0,30)):
@@ -221,11 +214,11 @@ if __name__ == "__main__":
     freqaccdb.getfreqaccindxtable()
     freqaccdb.CurDbTable.to_csv("freqaccindxtabledb.csv")
     print(freqaccdb.FreqCurDbTable)
-    freqaccdb.DropFreqIndxTable(deleteindxtable="freqaccindxtable")"""
+    freqaccdb.DropFreqIndxTable(deleteindxtable="rwrfreqacctest_2024_05_18_12_57_34")"""
     #freqaccdb.GetFreqAccIndxTable()
     #freqaccdb.SelFreqDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     #freqaccdb.SelFreqDateSysFilter(datefilterfrom="2024-03-01", datefilterto="2024-05-26", sysfilter="rfps")
-    #freqaccdb.DeleteFreqRecord(table_ref_id='esmfreqacctest_2024_04_30_14_29_18')
-    freqaccdb.FreqIndxDbConClose()
+    #freqaccdb.DeleteFreqRecord(table_ref_id='rwrfreqacctest_2024_05_18_12_57_34')
+    #freqaccdb.FreqIndxDbConClose()
 
 ########################################################################################################################

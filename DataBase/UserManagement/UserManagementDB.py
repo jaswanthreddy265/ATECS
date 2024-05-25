@@ -1,7 +1,7 @@
 # Database Functions of Deployed Systems
 import psycopg2
 import datetime
-from DataBase.TestCases.ErrorCodesDatabase import *
+from DataBase.UserManagement.ErrorCodesDatabase import *
 
 ########################################################################################################################
 #   User Management Database Class and its Functions

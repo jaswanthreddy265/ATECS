@@ -1,11 +1,8 @@
 import pandas as pd
 import datetime
 import psycopg2
-import random
-from time import sleep
-from tqdm import tqdm
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 
 ########################################################################################################################
@@ -112,31 +109,17 @@ class AmplAccIndxTableDB():
             print(self.AmplCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to amplaccindxtable ", error)
-
-    """####################################################################################################################
-    # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
+    # This Function Gets The Frequency Accuracy Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def GetAmplRowRecord(self, select_record='esmfreqacctest_2024_04_30_15_50_45'):
         try:
-            self.AmplDateFil = pd.read_sql_query(
-                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM amplaccindxtable WHERE date BETWEEN 
-                '{datefilterfrom}' AND '{datefilterto}' ''',
+            self.GetAmplIndxRowRecord = pd.read_sql_query(
+                f'''SELECT * FROM amplaccindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
-            print(self.AmplDateFil)
+            print(self.GetAmplRowRecord)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to amplaccindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def SelAmplDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
-        try:
-            self.AmplIndxDateFil = pd.read_sql_query(
-                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
-                con=self.connestablish)
-            print(self.AmplIndxDateFil)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to amplaccindxtable ", error)
-    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading
@@ -206,12 +189,12 @@ if __name__ == "__main__":
     print(type(ampl_list_str))
     deser_ampl = json.loads(ampl_list_str)
     print(type(deser_ampl[0]))"""
-    newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warneramplacctest_2024_04_15_14_52_57', 'start_ampl' : 500, 'stop_ampl' : 1000,
-              'step_ampl' : 50, 'ampl_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
-              'pri' : 1, 'freq' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
+    newrow = {'date' : datetime.datetime.now(),'username' : 'Madhavi',  'system_id' : 1, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpsamplacctest_2024_05_18_15_01_25', 'start_ampl' : -70, 'stop_ampl' : 10,
+              'step_ampl' :2, 'ampl_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'pw' : 1881,
+              'pri' : 1, 'freq' : 850, 'rms_error' : 1, 'test_status' : 'Completed', 'remarks' : ''  }
 
-    for i in tqdm(range(0,5)):
+    """for i in tqdm(range(0,5)):
         sleep(0)
         newrow['date']= datetime.datetime.now()
 
@@ -232,8 +215,8 @@ if __name__ == "__main__":
         newrow['pri']=random.randrange(0,1000)
         newrow['freq'] = random.randrange(-30, 0)
         newrow['rms_error'] = random.randrange(0, 100)
-        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        amplaccdb.AddAmplRecord(usercred=newrow)
+        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])"""
+    amplaccdb.AddAmplRecord(usercred=newrow)
 
     """for i in tqdm(range(0,30)):
         amplaccdb.DeleteAmplRecord(table_ref_id=f'''ampl_acc_test_{i}''')
@@ -242,7 +225,7 @@ if __name__ == "__main__":
     amplaccdb.CurDbTable.to_csv("amplaccindxtabledb.csv")
     print(amplaccdb.AmplCurDbTable)
     amplaccdb.DropAmplIndxTable(deleteindxtable="amplaccindxtable")"""
-    amplaccdb.GetAmplAccIndxTable()
+    #amplaccdb.GetAmplAccIndxTable()
     # amplaccdb.SelAmplDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     # amplaccdb.SelAmplDateSysFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26", sysfilter='rwr')
     amplaccdb.AmplIndxDbConClose()

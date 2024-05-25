@@ -3,11 +3,10 @@ from datetime import datetime
 from time import sleep
 
 import pandas as pd
-from tqdm import tqdm
 import psycopg2
 
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import DATABASE_CONNECTION_ERROR, SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 ########################################################################################################################
 #   Amplitude Accuracy Test Table Database Class and Member Functions
 #   Author  :   Bandi Jaswanth Reddy
@@ -28,7 +27,7 @@ class AmplAccTestTableDB():
         self.connection = Connect_to_Database()
         self.connestablish = self.connection.connection
         timestamp = datetime.now()
-        self.tablename= f'''amplacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+        #self.tablename= f'''amplacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
     ####################################################################################################################
     # This Function creates The  Amplitude Accuracy Test Database Table
     ####################################################################################################################
@@ -107,21 +106,35 @@ class AmplAccTestTableDB():
 ########################################################################################################################
 if __name__ == "__main__":
     amplacctestdb = AmplAccTestTableDB(Debug=False)
-    """timestamp = datetime.now()
-    #amplacctestdb.tablename =  f'''amplacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
-    amplacctestdb.CreateAmplAccTestTableDB()"""
+    timestamp = datetime.now()
+    amplacctestdb.tablename =  f'''rfpsamplacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+    print(amplacctestdb.tablename)
+    amplacctestdb.CreateAmplAccTestTableDB()
 
 
-    """newrow = {'set_ampl' : 4614, 'meas_ampl' : 26565, 'error':5}
-    for i in tqdm(range(0,100)):
+    newrow = {'set_ampl' : 4614, 'meas_ampl' : 26565, 'error':5}
+    start_ampl = -70
+    stop_ampl = 10
+    while start_ampl <= stop_ampl:
+        print(start_ampl)
+        sleep(1)
+        newrow['set_ampl'] = start_ampl
+        newrow['meas_ampl'] = newrow['set_ampl'] - random.randrange(-1, 1)
+        newrow['error'] = newrow['set_ampl'] - newrow['meas_ampl']
+
+        amplacctestdb.AddAmplTestRow(ampltestvalues=newrow)
+        start_ampl += 2
+    """for i in tqdm(range(0,50)):
         sleep(0)
-        newrow['set_ampl']=random.randrange(500,1000)
-        newrow['meas_ampl']=newrow['set_ampl']-random.randrange(-10,10)
+        
+        newrow['set_ampl'] = set_ampl+step_ampl
+        #newrow['set_ampl']=random.randrange(-90,90)
+        newrow['meas_ampl']=newrow['set_ampl']-random.randrange(-1,1)
         newrow['error']=newrow['set_ampl']-newrow['meas_ampl']
         amplacctestdb.AddAmplTestRow(ampltestvalues=newrow)"""
 
-    amplacctestdb.GetAmplAccTestTable(testtablename="rfpsamplacctest_2024_04_26_11_53_59")
+    #amplacctestdb.GetAmplAccTestTable(testtablename="rfpsamplacctest_2024_04_26_11_53_59")
     #amplacctestdb.CurDbTableAmpl.to_csv("amplacctest_2024_03_24_11_41_05.csv")
-    print(amplacctestdb.CurDbTableAmpl)
+    #print(amplacctestdb.CurDbTableAmpl)
     #amplacctestdb.DropAmplTestTable(deletetable="esmamplacctest_2024_04_15_14_52_52")
     amplacctestdb.close()

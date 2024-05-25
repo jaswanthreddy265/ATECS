@@ -1,11 +1,8 @@
-import random
-from time import sleep
-from tqdm import tqdm
 import pandas as pd
 import datetime
 import psycopg2
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 
 ########################################################################################################################
@@ -110,31 +107,17 @@ class PwMeasIndxTableDB():
             # print(self.PwCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to pwmeasindxtable ", error)
-
-    """####################################################################################################################
-    # This Function Gets The Pulse Width Measurement Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
+    # This Function Gets The Pulse width measurement Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def GetPwRowRecord(self, select_record='esmpwmeastest_2024_04_30_15_50_45'):
         try:
-            self.PwDateFil = pd.read_sql_query(
-                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM pwmeasindxtable WHERE date BETWEEN 
-                '{datefilterfrom}' AND '{datefilterto}' ''',
+            self.GetPwIndxRowRecord = pd.read_sql_query(
+                f'''SELECT * FROM pwmeasindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
-            print(self.PwDateFil)
+            print(self.GetPwIndxRowRecord)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to pwmeasindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The Pulse Width Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def SelPwDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
-        try:
-            self.PwIndxDateFil = pd.read_sql_query(
-                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
-                con=self.connestablish)
-            print(self.PwIndxDateFil)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to pwmeasindxtable ", error)
-    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The Pulse Width Measurement Test Index Database Table With Pandas For CSV Reading
@@ -198,48 +181,18 @@ if __name__ == "__main__":
     pwmeasdb.tablename = 'pwmeasindxtable'
     pwmeasdb.CreatePwMeasIndxTableDB()
 
-    # pw_list = [123.6,167,189]
-    """pw_list_str=json.dumps(pw_list)
-    print(type(pw_list_str))
-    deser_pw = json.loads(pw_list_str)
-    print(type(deser_pw[0]))"""
-    newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warnerpwmeastest_2024_04_15_14_52_57', 'start_pw' : 500, 'stop_pw' : 1000,
-              'step_pw' : 50, 'pw_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'freq' : 1881,
+    newrow = {'date' : datetime.datetime.now(),'username' : 'kalyani',  'system_id' : 5, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpspwmeastest_2024_05_18_14_25_12', 'start_pw' : 79, 'stop_pw' : 550,
+              'step_pw' : 15, 'pw_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'freq' : 1881,
               'pri' : 1, 'ampl' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
+    pwmeasdb.AddPwRecord(usercred=newrow)
 
-    for i in tqdm(range(0,100)):
-        sleep(0)
-        newrow['date']= datetime.datetime.now()
-
-        newrow['username']=random.choice(['BHASKAR', 'ADITYA', 'KALYANI', 'SATHISH', 'RAJU', 'SAGAR','MADHAVI', 'NAVYA',
-                                          'JASWANTH','SUDHAKAR', 'AKHIL', 'KRISHNA'])
-        newrow['system_id']=random.randrange(1,10)
-        newrow['system'] = random.choice(['rwr', 'warner', 'esm', 'rfps'])
-        newrow['mode'] = random.choice(['INJECTION', 'RADIATION'])
-        newrow['test_tab_ref']=f'''{newrow["system"]}pwmeastest_{datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S")}'''
-        #newrow['start_pw'] = random.randrange(0, 1000)
-        #newrow['stop_pw'] = random.randrange(0, 1000)
-        #newrow['step_pw'] = random.randrange(0, 1000)
-        #newrow['pw_list'] = random.randrange(0, 1000)
-        newrow['set_power']=random.randrange(-90,0)
-        newrow['pos_angle']=random.randrange(0,360)
-        newrow['signal_cat']=random.choice(['CW', 'PULSE'])                          #'STAGGER', 'JITTER', 'D&S', 'STABLE'
-        newrow['freq']=random.randrange(2,300000)
-        newrow['pri']=random.randrange(0,1000)
-        newrow['ampl'] = random.randrange(-30, 0)
-        newrow['rms_error'] = random.randrange(0, 100)
-        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        pwmeasdb.AddPwRecord(usercred=newrow)
-
-    """for i in tqdm(range(0,30)):
-        pwmeasdb.DeletePwRecord(table_ref_id=f'''pw_meas_test_{i}''')
-    pwmeasdb.DeletePwRecord(table_ref_id='warnerpwmeastest_2024_04_15_14_52_80')
+    """pwmeasdb.DeletePwRecord(table_ref_id='warnerpwmeastest_2024_04_15_14_52_80')
     pwmeasdb.getpwmeasindxtable()
     pwmeasdb.CurDbTable.to_csv("pwmeasindxtabledb.csv")
     print(pwmeasdb.PwCurDbTable)
     pwmeasdb.DropPwIndxTable(deletetable="")"""
-    pwmeasdb.GetPwMeasIndxTable()
+    #pwmeasdb.GetPwMeasIndxTable()
     # pwmeasdb.SelPwDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     # pwmeasdb.SelPwDateSysFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26", sysfilter='rwr')
     pwmeasdb.PwIndxDbConClose()

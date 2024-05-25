@@ -1,11 +1,8 @@
-import random
-from time import sleep
-from tqdm import tqdm
 import pandas as pd
 import datetime
 import psycopg2
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 
 
 ########################################################################################################################
@@ -107,34 +104,20 @@ class SensMeasIndxTableDB():
             self.SensMeasCurDbTable = pd.read_sql_query(
                 f'''SELECT * FROM sensmeasindxtable ''',
                 con=self.connestablish)
-            # print(self.SensMeasCurDbTable)
+            print(self.SensMeasCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to sensmeasindxtable ", error)
-
-    """####################################################################################################################
-    # This Function Gets The Sensitivity Measurement Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
+    # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def GetSensRowRecord(self, select_record='esmsensmeastest_2024_04_30_15_50_45'):
         try:
-            self.SensMeasDateFil = pd.read_sql_query(
-                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM sensmeasindxtable WHERE date BETWEEN 
-                '{datefilterfrom}' AND '{datefilterto}' ''',
+            self.GetSensIndxRowRecord = pd.read_sql_query(
+                f'''SELECT * FROM sensmeasindxtable WHERE test_tab_ref = '{select_record}' ''',
                 con=self.connestablish)
-            print(self.SensMeasDateFil)
+            print(self.GetSensIndxRowRecord)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to sensmeasindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The Sensitivity Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def SelSensMeasDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
-        try:
-            self.SensMeasIndxDateFil = pd.read_sql_query(
-                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
-                con=self.connestablish)
-            print(self.SensMeasIndxDateFil)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to sensmeasindxtable ", error)
-    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The Sensitivity Measurement Test Index Database Table With Pandas For CSV Reading
@@ -203,12 +186,12 @@ if __name__ == "__main__":
     print(type(sens_list_str))
     deser_sens = json.loads(sens_list_str)
     print(type(deser_sens[0]))"""
-    newrow = {'date' : datetime.datetime.now(),'username' : 'ravi',  'system_id' : 20, 'system': 'RWR', 'mode': 'INJECTION',
-              'test_tab_ref' : 'warnersensmeastest_2024_04_15_14_52_57', 'start_sens' : 500, 'stop_sens' : 1000,
-              'step_sens' : 50, 'sens_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'freq' : 1881,
+    newrow = {'date' : datetime.datetime.now(),'username' : 'Madhavi',  'system_id' :2, 'system': 'rfps', 'mode': 'INJECTION',
+              'test_tab_ref' : 'rfpssensmeastest_2024_05_18_15_25_29', 'start_sens' : -100, 'stop_sens' :50,
+              'step_sens' :2, 'sens_list' : '', 'set_power' : -30, 'pos_angle' : 140,'signal_cat' : 'PULSE', 'freq' : 1881,
               'pri' : 1, 'ampl' : 850, 'rms_error' : 1, 'test_status' : 'Incomplete', 'remarks' : 'new row added'  }
 
-    for i in tqdm(range(0,5)):
+    """for i in tqdm(range(0,5)):
         sleep(0)
         newrow['date']= datetime.datetime.now()
 
@@ -229,17 +212,17 @@ if __name__ == "__main__":
         newrow['pri']=random.randrange(0,1000)
         newrow['ampl'] = random.randrange(-30, 0)
         newrow['rms_error'] = random.randrange(0, 100)
-        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])
-        sensmeasdb.AddSensMeasRecord(usercred=newrow)
+        newrow['test_status'] = random.choice(['Completed', 'Incomplete'])"""
+    sensmeasdb.AddSensMeasRecord(usercred=newrow)
 
     """for i in tqdm(range(0,30)):
-        sensmeasdb.DeleteSensMeasRecord(table_ref_id=f'''sens_meas_test_{i}''')
-    sensmeasdb.DeleteSensMeasRecord(table_ref_id='warnersensmeastest_2024_04_15_14_52_80')
-    sensmeasdb.getsensmeasindxtable()
+        sensmeasdb.DeleteSensMeasRecord(table_ref_id=f'''sens_meas_test_{i}''')"""
+    #sensmeasdb.DeleteSensMeasRecord(table_ref_id='warnersensmeastest_2024_05_10_11_09_51')
+    """sensmeasdb.getsensmeasindxtable()
     sensmeasdb.CurDbTable.to_csv("sensmeasindxtabledb.csv")
     print(sensmeasdb.SensMeasCurDbTable)
     sensmeasdb.DropSensMeasIndxTable(deletetable="")"""
-    sensmeasdb.GetSensMeasIndxTable()
+    #sensmeasdb.GetSensMeasIndxTable()
     # sensmeasdb.SelSensMeasDateFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26")
     # sensmeasdb.SelSensMeasDateSysFilter(datefilterfrom="2024-04-01", datefilterto="2024-04-26", sysfilter='rwr')
     sensmeasdb.SensMeasIndxDbConClose()

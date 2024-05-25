@@ -3,11 +3,10 @@ from datetime import datetime
 from time import sleep
 
 import pandas as pd
-from tqdm import tqdm
 import psycopg2
 
-from DataBase.TempTest.ConnectDB import Connect_to_Database
-from DataBase.TestCases.ErrorCodesDatabase import DATABASE_CONNECTION_ERROR, SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ConnectDB import Connect_to_Database
+from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
 ########################################################################################################################
 #   DOA Measurement Test Table Database Class and Member Functions
 #   Author  :   Bandi Jaswanth Reddy
@@ -28,7 +27,7 @@ class DoaMeasTestTableDB():
         self.connection = Connect_to_Database()
         self.connestablish = self.connection.connection
         timestamp = datetime.now()
-        self.tablename= f'''doameastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+        #self.tablename= f'''doameastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
     ####################################################################################################################
     # This Function creates The  DOA Measurement Test Database Table
     ####################################################################################################################
@@ -38,8 +37,8 @@ class DoaMeasTestTableDB():
             cursor = self.connestablish.cursor()
             create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
                                      (
-                                         set_doa          FLOAT        NOT NULL,
-                                         meas_doa         FLOAT        NOT NULL,
+                                         set_angle          FLOAT        NOT NULL,
+                                         meas_angle         FLOAT        NOT NULL,
                                          error             FLOAT        NOT NULL
                                      ); '''
             cursor.execute(create_table_query)
@@ -54,11 +53,11 @@ class DoaMeasTestTableDB():
     ####################################################################################################################
     # This Function Adds The Data in DOA Measurement Test Database Table
     ####################################################################################################################
-    def AddDoaTestRow(self, doatestvalues={'set_doa' : 4614, 'meas_doa' : 26565, 'error' : 3 }):
+    def AddDoaTestRow(self, doatestvalues={'set_angle' : 4614, 'meas_angle' : 26565, 'error' : 3 }):
       #  print("AddDoaRow")
         try:
             cursor = self.connestablish.cursor()
-            insert_table_query = f'''INSERT INTO {self.tablename} VALUES('{doatestvalues['set_doa']}','{doatestvalues['meas_doa']}',
+            insert_table_query = f'''INSERT INTO {self.tablename} VALUES('{doatestvalues['set_angle']}','{doatestvalues['meas_angle']}',
                                      '{doatestvalues['error']}'  '''
             insert_table_query = insert_table_query + ');'
             cursor.execute(insert_table_query)
@@ -107,21 +106,34 @@ class DoaMeasTestTableDB():
 ########################################################################################################################
 if __name__ == "__main__":
     doameastestdb = DoaMeasTestTableDB(Debug=False)
-    """timestamp = datetime.now()
-    #doameastestdb.tablename =  f'''doameastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
-    doameastestdb.CreateDoaMeasTestTableDB()"""
+    timestamp = datetime.now()
+    doameastestdb.tablename =  f'''rfpsdoameastest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+    print(doameastestdb.tablename)
+    doameastestdb.CreateDoaMeasTestTableDB()
 
 
-    """newrow = {'set_doa' : 4614, 'meas_doa' : 26565, 'error':5}
-    for i in tqdm(range(0,100)):
+    newrow = {'set_angle' : 4614, 'meas_angle' : 26565, 'error':5}
+    start_doa = -90
+    stop_doa = 83
+    while start_doa <= stop_doa:
+        print(start_doa)
+        sleep(0)
+        newrow['set_angle'] = start_doa
+        newrow['meas_angle'] = newrow['set_angle'] - random.randrange(-1, 1)
+        newrow['error'] = newrow['set_angle'] - newrow['meas_angle']
+
+        doameastestdb.AddDoaTestRow(doatestvalues=newrow)
+        start_doa += 1.7
+    """for i in tqdm(range(0,100)):
         sleep(0)
         newrow['set_doa']=random.randrange(500,1000)
         newrow['meas_doa']=newrow['set_doa']-random.randrange(-10,10)
         newrow['error']=newrow['set_doa']-newrow['meas_doa']
         doameastestdb.AddDoaTestRow(doatestvalues=newrow)"""
 
-    doameastestdb.GetDoaMeasTestTable(testtablename="rfpsdoameastest_2024_04_26_11_53_59")
+
+    #doameastestdb.GetDoaMeasTestTable(testtablename="rfpsdoameastest_2024_04_26_11_53_59")
     #doameastestdb.CurDbTableDoa.to_csv("doameastest_2024_03_24_11_41_05.csv")
-    print(doameastestdb.CurDbTableDoa)
+    #print(doameastestdb.CurDbTableDoa)
     #doameastestdb.DropDoaTestTable(deletetable="esmdoameastest_2024_04_15_14_52_52")
     doameastestdb.close()
