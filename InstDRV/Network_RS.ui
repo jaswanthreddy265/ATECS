@@ -1,0 +1,1501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Network</class>
+ <widget class="QDialog" name="Network">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1277</width>
+    <height>593</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Network Analyzer-RS</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logos/PlatinumLogo.ico</normaloff>Logos/PlatinumLogo.ico</iconset>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>14</y>
+     <width>251</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 179);</string>
+   </property>
+   <property name="text">
+    <string> RS Network Analyzer</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>104</y>
+     <width>245</width>
+     <height>134</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 249);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Center Frequency (Hz)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Span (Hz)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_Span">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>p 500M</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_CF">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>p 2G</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_Start_Freq">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>p 1.75G</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_7">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Stop Frequency (Hz)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_Stop_Freq">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>p 2.25G</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Start Frequency (Hz)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" alignment="Qt::AlignRight">
+       <widget class="QLabel" name="label_15">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Power Level</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineEdit_Power_Level">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>-40</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>774</x>
+     <y>104</y>
+     <width>497</width>
+     <height>134</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(242, 252, 255);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" colspan="2">
+       <widget class="QCheckBox" name="Enable_Peak_Exc">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Enable Peak Excursion</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QCheckBox" name="Enable_Peak_Thrs">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Enable Peak Threshold</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QCheckBox" name="Enable_Peak_search">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Enable Peak Search</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Peak Excursion</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_Peak_Exc">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>6</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_9">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Active Marker</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_Act_Mark">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Marker1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_10">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Marker Search</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_Mark_Search">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Highest</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_11">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Peak Threshold</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_Peak_Thrs">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>-90</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" alignment="Qt::AlignLeft">
+       <widget class="QLabel" name="label_12">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Peak Search Criteria</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_Peak_search_Criteria">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Highest Peak</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>576</x>
+     <y>84</y>
+     <width>141</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>Frequency Settings</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>966</x>
+     <y>78</y>
+     <width>93</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(0, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>Peak Settings</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_3">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>270</y>
+     <width>245</width>
+     <height>255</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(235, 242, 255);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_7">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_17">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Video Bandwidth</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_Video_BW">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>2M</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_18">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IF Output State</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_IF_Op_State">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Off</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_19">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Resolution Bandwidth</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_Resol_BW">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>2M</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_20">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Smoothing Aperture</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_Smooth_Apert">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_21">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IF Bandwidth</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QLineEdit" name="lineEdit_IF_BW">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>30k</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2">
+       <widget class="QCheckBox" name="Auto_Video_BW">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Auto Video Bandwidth</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QCheckBox" name="Auto_Resl_BW">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Auto Resolution Bandwidth</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="2">
+       <widget class="QCheckBox" name="Enable_Smooth">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="text">
+         <string>Enable Smoothing</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_4">
+   <property name="geometry">
+    <rect>
+     <x>774</x>
+     <y>270</y>
+     <width>337</width>
+     <height>125</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(244, 255, 238);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_9">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_22">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Number Of Points (201)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_NoOf_Points">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>201</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_23">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sweep Count (1)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="lineEdit_Sweep_Count">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_24">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sweep Type (0:Lin.Frequency)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="lineEdit_Sweep_Type">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Log</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_25">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Single Sweep (1:Continuous Sweep)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="lineEdit_Single_Sweep">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Single</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_6">
+   <property name="geometry">
+    <rect>
+     <x>1162</x>
+     <y>272</y>
+     <width>109</width>
+     <height>123</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 248, 234);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_12">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_30">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>SCALE / DIV</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_Scale">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>10</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_31">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>7</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Format (0:dB Mag)</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLineEdit" name="lineEdit_Format">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>dB Mag</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_7">
+   <property name="geometry">
+    <rect>
+     <x>774</x>
+     <y>475</y>
+     <width>207</width>
+     <height>49</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(238, 255, 254);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_15">
+    <item row="0" column="0" alignment="Qt::AlignRight">
+     <widget class="QLabel" name="label_26">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Marker Value</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" alignment="Qt::AlignLeft">
+     <widget class="QLineEdit" name="lineEdit_Mark_Value">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_13">
+   <property name="geometry">
+    <rect>
+     <x>574</x>
+     <y>252</y>
+     <width>127</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>Bandwidth Settings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_14">
+   <property name="geometry">
+    <rect>
+     <x>880</x>
+     <y>252</y>
+     <width>103</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>Sweep Settings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_16">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>254</y>
+     <width>93</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 124, 10);</string>
+   </property>
+   <property name="text">
+    <string>Scale Settings</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_32">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>458</y>
+     <width>103</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(26, 125, 255);</string>
+   </property>
+   <property name="text">
+    <string>Marker Settings</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_8">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>532</y>
+     <width>751</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>614</x>
+      <y>10</y>
+      <width>27</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 7px; 
+background-color: red;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PB_Power">
+    <property name="geometry">
+     <rect>
+      <x>648</x>
+      <y>6</y>
+      <width>75</width>
+      <height>33</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(175, 255, 175);</string>
+    </property>
+    <property name="text">
+     <string>Power</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Resources/power_on_btn.png</normaloff>Resources/power_on_btn.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>56</x>
+      <y>8</y>
+      <width>449</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_16">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="PB_Peak_Search">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(0, 170, 255);
+background-color: rgb(105, 208, 255);</string>
+       </property>
+       <property name="text">
+        <string>PEAK SEARCH</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="PB_Preset">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(200, 183, 255);</string>
+       </property>
+       <property name="text">
+        <string>PRESET</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="PB_Restart">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(213, 255, 222);</string>
+       </property>
+       <property name="text">
+        <string>RESTART</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="PB_Run">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(170, 123, 148);</string>
+       </property>
+       <property name="text">
+        <string>Run / Stop</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_36">
+   <property name="geometry">
+    <rect>
+     <x>398</x>
+     <y>4</y>
+     <width>59</width>
+     <height>59</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/dlrl-logo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_37">
+   <property name="geometry">
+    <rect>
+     <x>748</x>
+     <y>6</y>
+     <width>59</width>
+     <height>59</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/PlatinumLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>106</y>
+     <width>493</width>
+     <height>467</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(249, 253, 255);</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_27">
+   <property name="geometry">
+    <rect>
+     <x>786</x>
+     <y>400</y>
+     <width>169</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Measurement Settings</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_9">
+   <property name="geometry">
+    <rect>
+     <x>776</x>
+     <y>420</y>
+     <width>203</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(238, 255, 254);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_17">
+    <item row="0" column="0" alignment="Qt::AlignRight">
+     <widget class="QLabel" name="label_28">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Current Meas</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" alignment="Qt::AlignLeft">
+     <widget class="QLineEdit" name="lineEdit_Current_Meas">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>S11</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>1122</x>
+     <y>434</y>
+     <width>143</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_10">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_29">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Marker (1)</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="lineEdit_Mark">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

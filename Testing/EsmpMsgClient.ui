@@ -1,0 +1,2810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>msg_dialog</class>
+ <widget class="QDialog" name="msg_dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>490</width>
+    <height>561</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logos/PlatinumLogo.ico</normaloff>Logos/PlatinumLogo.ico</iconset>
+  </property>
+  <widget class="QFrame" name="frame_direct_mode">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>115</y>
+     <width>455</width>
+     <height>235</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_53">
+    <item row="0" column="0" colspan="4">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Receiver Band</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+       <widget class="QComboBox" name="CB_direct_RB">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>RESM RxA (0.5-2 GHz) -ADF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxB (2-18 GHz) -BLI</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxF (18-40 GHz) -ADF</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="4" colspan="4">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Center Frequency</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_direct_CF">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>17500</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF1">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF2">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>10</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="2">
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten3</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>15</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="3" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_7">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten4</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>20</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="6">
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_8">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>25</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="7">
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_9">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten6</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_RF6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>30</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QGridLayout" name="gridLayout_9">
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF1">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>10</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_10">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="1">
+     <layout class="QGridLayout" name="gridLayout_10">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_11">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF2">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>20</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="2">
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_12">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten3</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>30</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="3" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_12">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_13">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten4</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>8</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="6">
+     <layout class="QGridLayout" name="gridLayout_13">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_14">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>18</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="7">
+     <layout class="QGridLayout" name="gridLayout_14">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_15">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten6</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_direct_IF6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>28</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_15">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_16">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Threshold</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_direct_thrs">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>55</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="2" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_16">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_17">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFBWSelection</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_direct_IFBWS">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="5" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_17">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_18">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sector Selection</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="CB_Direct_Sector">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>76</y>
+     <width>456</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_55">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_54">
+      <item row="0" column="0" alignment="Qt::AlignRight">
+       <widget class="QLabel" name="label">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Command</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" alignment="Qt::AlignLeft">
+       <widget class="QComboBox" name="CB_msg_sel">
+        <property name="minimumSize">
+         <size>
+          <width>300</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_CAL_START</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_CAL_STOP</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_DIRECTED_MODE</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_DATA_CALIB_EXTERNAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_DATA_CALIB_INTERNAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_NOISE_CALIB</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_PDW_LOG</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_START_WARNERRX_CAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_STOP_WARNERRX_CAL</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_RESTART</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>ATE_TO_ESMP_ACK_NACK</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1" alignment="Qt::AlignLeft">
+     <widget class="QPushButton" name="PB_Send">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="toolTip">
+       <string>Send</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(78, 234, 0);
+background-color: rgb(85, 170, 0);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_calib_internal">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>816</y>
+     <width>457</width>
+     <height>235</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>455</width>
+     <height>235</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_39">
+    <item row="0" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_18">
+      <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+       <widget class="QLabel" name="label_19">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Receiver Band</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignTop">
+       <widget class="QComboBox" name="CB_internal_RB">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>RESM RxA (0.5-2 GHz) -ADF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxB (2-18 GHz) -BLI</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxF (18-40 GHz) -ADF</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="2" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_19">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_20">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>BITEFreq</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_biteFreq">
+        <property name="text">
+         <string>17500</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="4" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_20">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_21">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Tuning Freq</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_tun_freq">
+        <property name="text">
+         <string>17500</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="6" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_21">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_22">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>SignalType</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="CB_internal_Sig_Type">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>Pulsed</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CW</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_22">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_23">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>PW</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_pw">
+        <property name="text">
+         <string>500000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_23">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_24">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>PRI</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_pri">
+        <property name="text">
+         <string>25000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="3">
+     <layout class="QGridLayout" name="gridLayout_24">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_25">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Threshold</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_thrs">
+        <property name="text">
+         <string>60</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="4" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_25">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_26">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IF BW Selection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IFBWS">
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="6" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_34">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_35">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>SectorSelection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QComboBox" name="CB_Internal_Sector">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QGridLayout" name="gridLayout_26">
+      <item row="1" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_internal_RF1">
+        <property name="text">
+         <string>5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_27">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten1</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="1" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_27">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_28">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_RF2">
+        <property name="text">
+         <string>9</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="3">
+     <layout class="QGridLayout" name="gridLayout_28">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_29">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_RF3">
+        <property name="text">
+         <string>3</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="4">
+     <layout class="QGridLayout" name="gridLayout_29">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_30">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_RF4">
+        <property name="text">
+         <string>6</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="5" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_30">
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_RF5">
+        <property name="text">
+         <string>19</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_31">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten5</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="7">
+     <layout class="QGridLayout" name="gridLayout_31">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_32">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_RF6">
+        <property name="text">
+         <string>23</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0">
+     <layout class="QGridLayout" name="gridLayout_32">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_33">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF1">
+        <property name="text">
+         <string>26</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="1" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_33">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_34">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF2">
+        <property name="text">
+         <string>20</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="3">
+     <layout class="QGridLayout" name="gridLayout_35">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_36">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAttenu3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF3">
+        <property name="text">
+         <string>4</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="4">
+     <layout class="QGridLayout" name="gridLayout_36">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_37">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF4">
+        <property name="text">
+         <string>18</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="5" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_37">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_38">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF5">
+        <property name="text">
+         <string>22</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="7">
+     <layout class="QGridLayout" name="gridLayout_38">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_39">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_internal_IF6">
+        <property name="text">
+         <string>17</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_external">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>570</y>
+     <width>459</width>
+     <height>235</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_56">
+    <item row="0" column="0" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_40">
+      <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+       <widget class="QLabel" name="label_40">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Receiver Band</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignTop">
+       <widget class="QComboBox" name="CB_external_RB">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <item>
+         <property name="text">
+          <string>RESM RxA (0.5-2 GHz) -ADF</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxB (2-18 GHz) -BLI</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>RESM RxF (18-40 GHz) -ADF</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="3" colspan="3">
+     <layout class="QGridLayout" name="gridLayout_41">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_41">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Center Frequency</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_CF">
+        <property name="text">
+         <string>17500</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QGridLayout" name="gridLayout_42">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_42">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF1">
+        <property name="text">
+         <string>15</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="1">
+     <layout class="QGridLayout" name="gridLayout_43">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_43">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF2">
+        <property name="text">
+         <string>25</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="2">
+     <layout class="QGridLayout" name="gridLayout_44">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_44">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF3">
+        <property name="text">
+         <string>7</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="3">
+     <layout class="QGridLayout" name="gridLayout_45">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_45">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF4">
+        <property name="text">
+         <string>24</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="4">
+     <layout class="QGridLayout" name="gridLayout_46">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_46">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RF Atten5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF5">
+        <property name="text">
+         <string>16</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="5">
+     <layout class="QGridLayout" name="gridLayout_47">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_47">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>RFAtten6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_RF6">
+        <property name="text">
+         <string>26</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <layout class="QGridLayout" name="gridLayout_48">
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF1">
+        <property name="text">
+         <string>19</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_48">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten1</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="1">
+     <layout class="QGridLayout" name="gridLayout_49">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_49">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF2">
+        <property name="text">
+         <string>2</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="2">
+     <layout class="QGridLayout" name="gridLayout_50">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_50">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF3">
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="3">
+     <layout class="QGridLayout" name="gridLayout_51">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_51">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF4">
+        <property name="text">
+         <string>18</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="4">
+     <layout class="QGridLayout" name="gridLayout_52">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_52">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAtten5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF5">
+        <property name="text">
+         <string>5</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="5">
+     <layout class="QGridLayout" name="gridLayout_59">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_53">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IFAttenu6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IF6">
+        <property name="text">
+         <string>13</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_60">
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_thrs">
+        <property name="text">
+         <string>75</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_54">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Threshold</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="2" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_61">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_55">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>IF BW Selection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_external_IFBWS">
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="3" column="4" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_62">
+      <item row="0" column="0" alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_56">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sector Selection</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <layout class="QGridLayout" name="gridLayout_63">
+        <item row="0" column="0">
+         <widget class="QComboBox" name="CB_external_Sector">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_57">
+   <property name="geometry">
+    <rect>
+     <x>142</x>
+     <y>2</y>
+     <width>225</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 0, 255);</string>
+   </property>
+   <property name="text">
+    <string>ESMP Client Application</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_response">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>457</width>
+     <height>185</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="label_58">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>70</y>
+      <width>61</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Response</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_63">
+    <property name="geometry">
+     <rect>
+      <x>8</x>
+      <y>0</y>
+      <width>69</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Command</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_cmd">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>22</y>
+      <width>455</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+background-color: rgb(240, 240, 240);
+border-top-color: rgb(240, 240, 240);
+border-right-color: rgb(240, 240, 240);
+border-bottom-color: rgb(240, 240, 240);
+border-left-color: rgb(240, 240, 240);
+</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Box</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Sunken</enum>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="tabStopWidth">
+     <number>30</number>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_response">
+    <property name="geometry">
+     <rect>
+      <x>4</x>
+      <y>92</y>
+      <width>455</width>
+      <height>87</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_logo">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>6</y>
+     <width>67</width>
+     <height>67</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/Platinumlogo2.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>174</x>
+     <y>40</y>
+     <width>158</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_65">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="PB_Connect">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 255, 0);</string>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="PB_CalStart">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 228, 251);
+background-color: rgb(255, 69, 7);
+background-color: rgb(0, 255, 247);</string>
+      </property>
+      <property name="text">
+       <string>CalStart</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_noise_calib">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>1056</y>
+     <width>455</width>
+     <height>235</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>455</width>
+     <height>235</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>66</y>
+      <width>163</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_87">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_78">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>IF BW Selection</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_noise_IFBWS">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>11</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>2</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>188</x>
+      <y>66</y>
+      <width>141</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_73">
+     <item row="1" column="0">
+      <widget class="QComboBox" name="CB_noise_Sector">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_64">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sector Selection</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>188</x>
+      <y>11</y>
+      <width>141</width>
+      <height>47</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_68">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_60">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Center Frequency</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_noise_CF">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>17500</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>11</y>
+      <width>99</width>
+      <height>47</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_75">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_66">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Threshold</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_noise_Thrs">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>50</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>12</y>
+      <width>202</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_66">
+     <item row="0" column="0" alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="label_59">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Receiver Band</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="CB_noise_RB">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>RESM RxA (0.5-2 GHz) -ADF</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RESM RxB (2-18 GHz) -BLI</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>RESM RxF (18-40 GHz) -ADF</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_ack_nack">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>1300</y>
+     <width>457</width>
+     <height>230</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>455</width>
+     <height>230</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="layoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>166</x>
+      <y>11</y>
+      <width>135</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_69">
+     <item row="0" column="0" alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label_61">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sequence Number</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_seqno_ack">
+       <property name="text">
+        <string>8</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>11</y>
+      <width>135</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_76">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_67">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Acknowledgement 
+Status</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_status_ack">
+       <property name="text">
+        <string>9</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>12</y>
+      <width>145</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_67">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_62">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Message Code</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEdit_msgcode_ack">
+       <property name="text">
+        <string>3</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_pdw">
+   <property name="geometry">
+    <rect>
+     <x>8</x>
+     <y>1542</y>
+     <width>459</width>
+     <height>235</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>455</width>
+     <height>235</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QWidget" name="layoutWidget_9">
+    <property name="geometry">
+     <rect>
+      <x>12</x>
+      <y>12</y>
+      <width>202</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_71">
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_65">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Action</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QComboBox" name="CB_pdw_action">
+       <item>
+        <property name="text">
+         <string>Stop</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>226</x>
+      <y>10</y>
+      <width>133</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_74">
+     <item row="1" column="0">
+      <widget class="QComboBox" name="CB_pdw_Sector">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <item>
+        <property name="text">
+         <string>All Sectors</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>0-60°</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>60-120°</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>120-180°</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>180-240°</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>240-300°</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>300-360°</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignBottom">
+      <widget class="QLabel" name="label_68">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Sector Selection</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_DLRL_logo">
+   <property name="geometry">
+    <rect>
+     <x>16</x>
+     <y>6</y>
+     <width>67</width>
+     <height>67</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/dlrl-logo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

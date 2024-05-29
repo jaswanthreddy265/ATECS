@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SigGen</class>
+ <widget class="QDialog" name="SigGen">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>458</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Signal Generation</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logos/PlatinumLogo.ico</normaloff>Logos/PlatinumLogo.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(238, 255, 252);
+background-color: rgb(239, 247, 255);</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>128</x>
+     <y>20</y>
+     <width>213</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(246, 240, 255);
+background-color:None;
+
+color: rgb(255, 0, 127);
+border:None;</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="text">
+    <string>Signal Generator  </string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>62</y>
+     <width>298</width>
+     <height>66</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 242, 225);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Frequency [ Hz ]</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_Freq"/>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="1" column="0">
+       <widget class="QLineEdit" name="lineEdit_Ampl"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Amplitude [ dBm ]</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>46</x>
+     <y>140</y>
+     <width>347</width>
+     <height>106</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(242, 255, 238);
+background-color: rgb(243, 255, 254);
+background-color: rgb(241, 255, 240);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="PB_AM">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>AM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="PB_Pulse">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PULSE</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="PB_Mod_Off">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>MOD OFF</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="PB_RF_Off">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>RF OFF</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="PB_FM">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>FM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="PB_LF_Out">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>LF OUT</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>PW</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_PW"/>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="PB_PM">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>PM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="PB_Alc_Off">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>ALC OFF</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2" colspan="2">
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>PRI</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_PRI"/>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="PB_Connect">
+   <property name="geometry">
+    <rect>
+     <x>47</x>
+     <y>273</y>
+     <width>75</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(170, 255, 117);</string>
+   </property>
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_12">
+   <property name="geometry">
+    <rect>
+     <x>128</x>
+     <y>286</y>
+     <width>17</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border-radius: 7px; 
+background-color: red;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>252</x>
+     <y>274</y>
+     <width>158</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_7">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="PB_Preset">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 170, 127);
+color: rgb(0, 170, 255);
+color: rgb(0, 0, 255);</string>
+      </property>
+      <property name="text">
+       <string>Preset</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="PB_Local">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Local</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>12</x>
+     <y>12</y>
+     <width>63</width>
+     <height>63</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/dlrl-logo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>382</x>
+     <y>12</y>
+     <width>63</width>
+     <height>63</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/PlatinumLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

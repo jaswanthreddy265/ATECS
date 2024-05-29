@@ -107,17 +107,7 @@ class SensMeasIndxTableDB():
             print(self.SensMeasCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to sensmeasindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def GetSensRowRecord(self, select_record='esmsensmeastest_2024_04_30_15_50_45'):
-        try:
-            self.GetSensIndxRowRecord = pd.read_sql_query(
-                f'''SELECT * FROM sensmeasindxtable WHERE test_tab_ref = '{select_record}' ''',
-                con=self.connestablish)
-            print(self.GetSensIndxRowRecord)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to sensmeasindxtable ", error)
+
 
     ####################################################################################################################
     # This Function Gets The Sensitivity Measurement Test Index Database Table With Pandas For CSV Reading

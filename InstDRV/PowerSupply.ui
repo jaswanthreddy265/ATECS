@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>646</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PowerSupply</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Logos/PlatinumLogo.ico</normaloff>Logos/PlatinumLogo.ico</iconset>
+  </property>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>22</x>
+     <y>78</y>
+     <width>163</width>
+     <height>333</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(251, 255, 255);
+background-color: rgb(244, 243, 255);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_5">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0" colspan="2">
+       <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="text">
+         <string>Address</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
+       <widget class="QLineEdit" name="lineEdit_Address">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QLabel" name="label_2">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>OVP Level</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" colspan="2">
+       <widget class="QLabel" name="label_3">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>uvL Level</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0" colspan="2" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_uvl_Level">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Voltage</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0" colspan="2" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_Current">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0" colspan="2" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_Voltage">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="2" alignment="Qt::AlignHCenter">
+       <widget class="QLineEdit" name="lineEdit_OVP_Level">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="8" column="0" colspan="2">
+       <widget class="QLabel" name="label_5">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Current</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>192</x>
+     <y>184</y>
+     <width>443</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 251, 247);
+background-color: rgb(248, 255, 254);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::WinPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Output Voltage</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_OP_Voltage">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Output Current</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="lineEdit_OP_Current">
+        <property name="font">
+         <font>
+          <family>Arial</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>0.0000</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>168</y>
+     <width>115</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+background-color: rgb(248, 255, 254);</string>
+   </property>
+   <property name="text">
+    <string>Power Supply 1</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_9">
+   <property name="geometry">
+    <rect>
+     <x>234</x>
+     <y>12</y>
+     <width>139</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Arial</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(204, 0, 102);</string>
+   </property>
+   <property name="text">
+    <string>Power Supply</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>158</x>
+     <y>8</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/dlrl-logo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>382</x>
+     <y>8</y>
+     <width>51</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap>Logos/PlatinumLogo.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>24</x>
+     <y>425</y>
+     <width>158</width>
+     <height>59</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
+     <widget class="QPushButton" name="PB_OP_Off">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(208, 0, 0);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Output Off</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QPushButton" name="PB_Local">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 170, 255);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Local</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="PB_Read_All">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(167, 138, 255);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Read All</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QPushButton" name="PB_Stop">
+      <property name="font">
+       <font>
+        <family>Arial</family>
+        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(234, 55, 73);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

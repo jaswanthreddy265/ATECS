@@ -210,7 +210,7 @@ class AnalogGaugeWidget(QWidget):
         ################################################################################################
         # SET GAUGE UNITS
         ################################################################################################
-        self.units = "℃"
+        self.units = " "
 
         # QTimer sorgt für neu Darstellung alle X ms
         # evtl performance hier verbessern mit self.update() und self.use_timer_event = False

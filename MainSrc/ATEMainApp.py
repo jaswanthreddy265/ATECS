@@ -1,10 +1,10 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow
 
 from loginDlg import LoginDlg
 
-from MainSRC.MainSRC import Ui_ATEC_App
+from MainSRC import Ui_ATEC_App
 from MainSRCWin import MainGUI
 
 ########################################################################################################################

@@ -107,17 +107,31 @@ class PriMeasIndxTableDB():
             print(self.PriCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to primeasindxtable ", error)
+
+    """####################################################################################################################
+    # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    # This Function Gets The Frequency Accuracy Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def GetPriRowRecord(self, select_record='esmprimeastest_2024_04_30_15_50_45'):
+    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
         try:
-            self.GetPriIndxRowRecord = pd.read_sql_query(
-                f'''SELECT * FROM primeasindxtable WHERE test_tab_ref = '{select_record}' ''',
+            self.PriDateFil = pd.read_sql_query(
+                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM primeasindxtable WHERE date BETWEEN 
+                '{datefilterfrom}' AND '{datefilterto}' ''',
                 con=self.connestablish)
-            print(self.GetPriIndxRowRecord)
+            print(self.PriDateFil)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to primeasindxtable ", error)
+    ####################################################################################################################
+    # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def SelPriDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
+        try:
+            self.PriIndxDateFil = pd.read_sql_query(
+                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
+                con=self.connestablish)
+            print(self.PriIndxDateFil)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print("Error in reading from to primeasindxtable ", error)
+    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The PRI Measurement Test Index Database Table With Pandas For CSV Reading

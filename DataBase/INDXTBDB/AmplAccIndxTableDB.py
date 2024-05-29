@@ -109,17 +109,31 @@ class AmplAccIndxTableDB():
             print(self.AmplCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to amplaccindxtable ", error)
+
+    """####################################################################################################################
+    # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading
     ####################################################################################################################
-    # This Function Gets The Frequency Accuracy Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def GetAmplRowRecord(self, select_record='esmfreqacctest_2024_04_30_15_50_45'):
+    def SelDateFilter(self, datefilterfrom='', datefilterto=''):
         try:
-            self.GetAmplIndxRowRecord = pd.read_sql_query(
-                f'''SELECT * FROM amplaccindxtable WHERE test_tab_ref = '{select_record}' ''',
+            self.AmplDateFil = pd.read_sql_query(
+                f'''SELECT date, username, system_id, system, mode, test_tab_ref FROM amplaccindxtable WHERE date BETWEEN 
+                '{datefilterfrom}' AND '{datefilterto}' ''',
                 con=self.connestablish)
-            print(self.GetAmplRowRecord)
+            print(self.AmplDateFil)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to amplaccindxtable ", error)
+    ####################################################################################################################
+    # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading
+    ####################################################################################################################
+    def SelAmplDateFilter(self,indxtablename='', datefilterfrom='', datefilterto=''):
+        try:
+            self.AmplIndxDateFil = pd.read_sql_query(
+                f'''SELECT * FROM '{indxtablename}' WHERE date BETWEEN '{datefilterfrom}' AND '{datefilterto}' ''',
+                con=self.connestablish)
+            print(self.AmplIndxDateFil)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print("Error in reading from to amplaccindxtable ", error)
+    ##################################################################"""
 
     ####################################################################################################################
     # This Function Gets The Amplitude Accuracy Test Index Database Table With Pandas For CSV Reading

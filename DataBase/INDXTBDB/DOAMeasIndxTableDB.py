@@ -107,17 +107,6 @@ class DoaMeasIndxTableDB():
             print(self.DoaCurDbTable)
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error in reading from to doameasindxtable ", error)
-    ####################################################################################################################
-    # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading
-    ####################################################################################################################
-    def GetDoaRowRecord(self, select_record='esmdoameastest_2024_04_30_15_50_45'):
-        try:
-            self.GetDoaIndxRowRecord = pd.read_sql_query(
-                f'''SELECT * FROM doameasindxtable WHERE test_tab_ref = '{select_record}' ''',
-                con=self.connestablish)
-            print(self.GetDoaIndxRowRecord)
-        except (Exception, psycopg2.DatabaseError) as error:
-            print("Error in reading from to doameasindxtable ", error)
 
     ####################################################################################################################
     # This Function Gets The DOA Measurement Test Index Database Table With Pandas For CSV Reading

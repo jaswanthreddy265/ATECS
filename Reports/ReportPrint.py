@@ -25,13 +25,11 @@ from Reports.ExcelCells.FrequencyTDR import *
 
 class ReportPdf():
     def __init__(self):
-        self.ReportPath = "C:/Users/jaswa/PycharmProjects/ATEC/Reports/"
+        self.ReportPath = "C:/Users/jaswa/PycharmProjects/ATEC1/Reports/"
+        self.MainsrcPath = "C:/Users/jaswa/PycharmProjects/ATEC1/MainSrc/"
     def PdfPreview(self, TableSelected=['esmfreqacctest_2024_04_30_15_50_45']):
-        #print("hiii")
-        #TableSelected = 'esmfreqacctest_2024_04_30_15_50_45'
-        self.TableSelection=TableSelected
-        #################################
-
+        #######################################Creating Excel Files#####################################################
+        self.TableSelection = TableSelected
         key_matched = []
         testnames = ["freqacc", "pwacc", "primeas", "doameas", "amplacc", "sensmeas"]
         ForTablename = self.TableSelection
@@ -41,18 +39,19 @@ class ReportPdf():
                     key_matched.append(key)
                     print(key)
         print(key_matched)
-        for i in range(0,len(key_matched)):
+        for i in range(0, len(key_matched)):
             print(key_matched[i])
             if key_matched[i] == 'freqacc':
+                excelfilename = self.TableSelection[i]
                 GetFreqIndxTable = FreqAccIndxTableDB()
                 GetFreqIndxTable.GetFreqRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetFreqIndxTable.GetFreqIndxRowRecord
                 print(dataappend)
-                path = 'Templates/FreqAccTestTemplate.xlsx'
+                path = f'{self.ReportPath}Templates/FreqAccTestTemplate.xlsx'
                 GetFreqTestTable = FreqAccTestTableDB()
                 GetFreqTestTable.GetFreqAccTestTable(testtablename=self.TableSelection[i])
                 dfreadtoui = GetFreqTestTable.CurDbTableFreq
-                #print(dfreadtoui)
+                # print(dfreadtoui)
                 self.settestvalues = dfreadtoui["set_freq"]
                 self.meastestvalues = dfreadtoui["meas_freq"]
                 self.errortestvalues = dfreadtoui["error"]
@@ -86,7 +85,6 @@ class ReportPdf():
                                        end_column=7)  # Merging E to G cols
                     sheet1.merge_cells(start_row=18 + i, start_column=8, end_row=18 + i,
                                        end_column=9)  # Merging H and I cols
-
                     self.set_border(sheet1, f'''B{18 + i}:I{18 + i}''')  # for excel sheet table cell borders
 
                     sheet1[f'''B{18 + i}'''] = i + 1
@@ -124,9 +122,10 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #
-            """elif key_matched[i] == 'pwacc':
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
+            elif key_matched[i] == 'pwacc':
+                excelfilename = self.TableSelection[i]
                 GetPwIndxTable = PwMeasIndxTableDB()
                 GetPwIndxTable.GetPwRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetPwIndxTable.GetPwIndxRowRecord
@@ -205,9 +204,10 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
             elif key_matched[i] == 'primeas':
+                excelfilename = self.TableSelection[i]
                 GetPriIndxTable = PriMeasIndxTableDB()
                 GetPriIndxTable.GetPriRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetPriIndxTable.GetPriIndxRowRecord
@@ -286,10 +286,11 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
                 ########################################################################################################
             elif key_matched[i] == 'amplacc':
+                excelfilename = self.TableSelection[i]
                 GetAmplIndxTable = AmplAccIndxTableDB()
                 GetAmplIndxTable.GetAmplRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetAmplIndxTable.GetAmplIndxRowRecord
@@ -368,10 +369,11 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
                 print(dataappend)
             elif key_matched[i] == 'doameas':
+                excelfilename = self.TableSelection[i]
                 GetDoaIndxTable = DoaMeasIndxTableDB()
                 GetDoaIndxTable.GetDoaRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetDoaIndxTable.GetDoaIndxRowRecord
@@ -386,7 +388,7 @@ class ReportPdf():
                 workbook = load_workbook(path)
                 sheetonename = "sheet1"
                 sheet1 = workbook.active
-                sheet1.title =sheetonename
+                sheet1.title = sheetonename
                 sheet1[START_DOA] = dfRowFil.iloc[0][6]  # Start PW
                 sheet1[STOP_DOA] = (dfRowFil.iloc[0][7])  # Stop PW
                 sheet1[STEP_DOA] = (dfRowFil.iloc[0][8])  # Step PW
@@ -450,10 +452,11 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
                 print(dataappend)
             elif key_matched[i] == 'sensmeas':
+                excelfilename = self.TableSelection[i]
                 GetSensIndxTable = SensMeasIndxTableDB()
                 GetSensIndxTable.GetSensRowRecord(select_record=self.TableSelection[i])
                 dataappend = GetSensIndxTable.GetSensIndxRowRecord
@@ -531,45 +534,50 @@ class ReportPdf():
                 for i in range(0, len(self.FontSizeStyle)):
                     sheet1[self.FontSizeStyle[i]].font = Font(size=12, bold=True)  # font size and style
                 # save the file
-                outfile = self.TableSelection[i] + '.xlsx'
-                workbook.save(filename= f'temp/{outfile}')  #"""
+                outfile = excelfilename + '.xlsx'
+                workbook.save(filename=f'{self.ReportPath}temp/' + outfile)
+        self.PdfConvert(PdfsSelected=self.TableSelection)
+    def PdfConvert(self, PdfsSelected=['esmfreqacctest_2024_04_30_15_50_45']):
+        print("hello")
+        self.TableSelection = PdfsSelected
         #########################################Converting To Pdf######################################################
         for i in range(0, len(self.TableSelection)):
             SheetFileName = str(self.TableSelection[i])
             excel = client.Dispatch("Excel.Application")
             # excel.Visible = False
             # Read Excel File
-            sheets = excel.Workbooks.Open(f'''C:/Users/jaswa/PycharmProjects/ATEC/Reports/temp/{SheetFileName}.xlsx ''')
+            sheets = excel.Workbooks.Open(f'{self.ReportPath}temp/{SheetFileName}.xlsx')
             excel.Visible = False
             work_sheets = sheets.Worksheets[0]
             # Convert into PDF File
-            work_sheets.ExportAsFixedFormat(0,f'''C:/Users/jaswa/PycharmProjects/ATEC/Reports/temp/{SheetFileName}''')  # no need for file format because it'll autoatically fixed
+            work_sheets.ExportAsFixedFormat(0,f'{self.ReportPath}temp/{SheetFileName}')  # no need for file format because it'll autoatically fixed
         print("pdf files generated Successfully and are ready for preview")
         #########################################File Merging###########################################################
         pdfs = []
         for i in range(0, len(self.TableSelection)):
-            FilePathName = f'''C:/Users/jaswa/PycharmProjects/ATEC/Reports/temp/{self.TableSelection[i]}.pdf'''
+            FilePathName = f'''C:/Users/jaswa/PycharmProjects/ATEC1/Reports/temp/{self.TableSelection[i]}.pdf'''
             pdfs.append(FilePathName)
         print(pdfs)
-        print(type(pdfs))
         merger = PdfMerger()
         for pdf in pdfs:
             merger.append(pdf)
-        merger.write("C:/Users/jaswa/PycharmProjects/ATEC/Reports/preview.pdf")
+        merger.write(f'{self.MainsrcPath}preview.pdf')
         merger.close()
         print("PDF merged successfully")
-
         map(lambda book: book.Close(True), excel.Workbooks)
         excel.Quit()
+        self.CleanFiles()
         #########################################Temp File Clean Up#####################################################
+    def CleanFiles(self):
         try:
-            folder_path = 'C:/Users/jaswa/PycharmProjects/ATEC1/Reports/folderremovedemo'
+            sleep(2)
+            folder_path = f'{self.ReportPath}temp'
             shutil.rmtree(folder_path)
             print('Folder and its content removed')
         except:
             print('Folder not deleted')
 
-        path = 'C:/Users/jaswa/PycharmProjects/ATEC1/Reports/folderremovedemo'
+        path = f'{self.ReportPath}temp'
         try:
             os.mkdir(path)
             print("Folder %s created!" % path)
