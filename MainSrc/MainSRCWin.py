@@ -26,6 +26,10 @@ from DataBase.TESTTBDB.SensMeasTestTableDB import SensMeasTestTableDB
 from MainSRC import Ui_ATEC_App
 import pyqtgraph as pg
 
+from Reports.ReportPrint import ReportPdf
+from Reports.ReportSave import ReportExcel
+
+
 ########################################################################################################################
 class MainGUI(QMainWindow, Ui_ATEC_App):
     def __init__(self):
@@ -56,7 +60,8 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.PlotGraph = self.Reports_ErrorGraph.addPlot()
         self.Reports_PB_Plot.clicked.connect(self.TableKeyValue)
         self.Reports_PB_Clear.clicked.connect(self.RemoveFilters)
-        #self.Reports_PB_Save.clicked.connect(self.SaveProcess)
+        self.Reports_PB_Save.clicked.connect(self.SaveProcess)
+        self.Reports_PB_Print.clicked.connect(self.printpreviewDialog)
 
         #CALIBRATION TAB
         self.row = 0
@@ -1162,6 +1167,52 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.Reports_Table.setRowCount(0)
         self.PlotGraph.clear()
     ####################################################################################################################
+    def SaveProcess(self):
+        selRows = self.tableWidget_Reports.selectedRanges()
+        if (len(selRows) > 0):
+            RowsSelected = []
+            for i in range(len(selRows)):
+                selRange = selRows[i]
+                topRow = selRange.topRow()
+                bottomRow = selRange.bottomRow()
+                for row in range(topRow, bottomRow + 1):
+                    RowsSelected.append(row)
+                RowsSelected.sort()
+            # print(RowsSelected)
+        TableSelection = []
+        for i in range(len(RowsSelected)):
+            rowofcol = (self.tableWidget_Reports.item(RowsSelected[i], 5)).text()
+            TableSelection.append(rowofcol)
+        print(TableSelection)
+        ReportsCls = ReportExcel()
+        ReportsCls.SaveProcess(TableSelected=TableSelection)
+        QMessageBox.information(self, "Self Test", "Reports Saved")
+    ####################################################################################################################
+    def printpreviewDialog(self):
+        selRows = self.tableWidget_Reports.selectedRanges()
+        if (len(selRows) > 0):
+            RowsSelected = []
+            for i in range(len(selRows)):
+                selRange = selRows[i]
+                topRow = selRange.topRow()
+                bottomRow = selRange.bottomRow()
+                for row in range(topRow, bottomRow + 1):
+                    RowsSelected.append(row)
+                RowsSelected.sort()
+        TableSelection = []
+        for i in range(len(RowsSelected)):
+            rowofcol = (self.tableWidget_Reports.item(RowsSelected[i], 5)).text()
+            TableSelection.append(rowofcol)
+        print(TableSelection)
+        ReportsCls = ReportPdf()
+        ReportsCls.PdfPreview(TableSelected=TableSelection)
+        #WaitDuration = sleep((len(TableSelection))*2.1)
+        QMessageBox.information(self, "Reports Print", f'Reports are generating.... Please Wait ')
+        time.sleep((len(TableSelection)) * 2 + 5)
+
+        """self.printcall = PrinterDlg()
+        self.printcall.show()"""
+    ####################################################################################################################
 #############################************************CALIBRATION*********************###################################
     def CalibRfPathLoss(self):
         self.Rad_progressBar.setValue(0)
@@ -1200,7 +1251,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
             self.Rad_progressBar.setValue(int((rowindx+1)*100/TotalSteps))
             set_freq_rf.append(freq)
             path_loss_rf.append(Path_Loss)
-            self.UpdateRfPathPlot(set_freq_list = set_freq_rf, path_loss_list = path_loss_rf)
+            self.UpdateRfPathLossPlot(set_freq_list = set_freq_rf, path_loss_list = path_loss_rf)
             QApplication.processEvents()
             time.sleep(1)
             freq = freq + stepfreq
@@ -1218,15 +1269,16 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.RFPath_tableWidget.scrollToItem(tableverticalscroll, QAbstractItemView.PositionAtTop)
         self.RFPath_tableWidget.selectRow(TableIndx)
     ####################################################################################################################
-    def UpdateRfPathPlot(self,set_freq_list = [], path_loss_list = []):
+    def UpdateRfPathLossPlot(self,set_freq_list = [], path_loss_list = []):
         setfreqvalue = [float(i) for i in set_freq_list]
         pathlossvalue = [float(i) for i in path_loss_list]
+        self.RFPath_graph.setYRange(-30, 30)
         #self.PlotGraph.addLegend()
         #self.RFPath_graph.plot(setfreqvalue, pathlossvalue, pen='r', width=5, style=QtCore.Qt.SolidLine )
         if self.Calib_Radiation.isChecked():
-            self.RFPath_graph.plot(setfreqvalue, pathlossvalue, pen='g', width=2, name='radiation')
+            self.RFPath_graph.plot(setfreqvalue, pathlossvalue, pen='m', width=2, name='radiation')
         elif self.Calib_Injection.isChecked():
-            self.RFPath_graph.plot(setfreqvalue, pathlossvalue, pen='g', width=2, name='injection')
+            self.RFPath_graph.plot(setfreqvalue, pathlossvalue, pen='m', width=2, name='injection')
     ####################################################################################################################
     def RfPathDBUpdate(self):
         col_count = 5
