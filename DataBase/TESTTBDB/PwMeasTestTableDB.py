@@ -31,11 +31,11 @@ class PwMeasTestTableDB():
     ####################################################################################################################
     # This Function creates The  Pulse Width Measurement Test Database Table
     ####################################################################################################################
-    def CreatePwMeasTestTableDB(self):
+    def CreatePwMeasTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_pw          FLOAT        NOT NULL,
                                          meas_pw         FLOAT        NOT NULL,

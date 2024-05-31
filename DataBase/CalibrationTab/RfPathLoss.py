@@ -63,7 +63,7 @@ class RFPathLossDB():
             if self.Debug == False:
                 print("RFPathLossDB(AddRecord)- Error in inserting to table", error)
             return DATABASE_ADDDATA_ERROR
-    ####################################################################################################################
+    """####################################################################################################################
     # This Function Deletes The Record from rfpathlossradmode or rfpathlossinjmode Index Database Table
     ####################################################################################################################
     def DeleteRecord(self,freqrecord=500):
@@ -74,7 +74,7 @@ class RFPathLossDB():
             self.connestablish.commit()
             print("deleted the row successfully")
         except (Exception, psycopg2.DatabaseError) as error:
-          print("Error while delating from the table", error)
+          print("Error while delating from the table", error)"""
     ####################################################################################################################
     # This Function Deletes The range of Records from rfpathlossradmode or rfpathlossinjmode Index Database Table
     ####################################################################################################################
@@ -109,7 +109,6 @@ class RFPathLossDB():
             self.CurDbTable.to_csv('rfpathlosstableasc_order.csv')
         except (Exception, psycopg2.DatabaseError) as error:
             print("Error while reading from the table ", error)
-
     ####################################################################################################################
     # This Function Gets The RF Path Loss Data of Injection or Radiation from Database Table For pandas Reading
     ####################################################################################################################
@@ -119,8 +118,6 @@ class RFPathLossDB():
         engine = create_engine(
             'postgresql+psycopg2://postgres:Platinum0435#@localhost:6543/atec')
         df.to_sql(f'{tablename}', engine, if_exists='append', index=False)
-
-
     ####################################################################################################################
     # This Function Closes The Database
     ####################################################################################################################

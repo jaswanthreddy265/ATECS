@@ -48,7 +48,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.hist_Flag = False
 
         #REPORTS TAB
-
         self.dateEdit_From.dateChanged.connect(self.ReportDate)
         self.dateEdit_To.dateChanged.connect(self.ReportDate)
         self.Reports_PB_Get.clicked.connect(self.ATECDataRetrieve)
@@ -1236,7 +1235,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         stopfreq = float(self.lineEdit_Rad_Stop_Freq.text())
         stepfreq = float(self.lineEdit_Rad_Step_Freq.text())
         setampl = float(self.lineEdit_Rad_Ampl.text())
-        self.calclass = CalRfPathLoss()
+        self.CalRfPathLossClass = CalRfPathLoss()
         QApplication.processEvents()
         time.sleep(1)
         freq = startfreq
@@ -1246,7 +1245,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         set_freq_rf = []
         path_loss_rf = []
         while freq <= stopfreq:
-            Meas_Power, Path_Loss = self.calclass.GetMeasurement(freq = freq, power = setampl)
+            Meas_Power, Path_Loss = self.CalRfPathLossClass.GetMeasurement(freq = freq, power = setampl)
             self.UpdatePathLossTable(TableIndx = rowindx, Freq = freq, Meas_Power = Meas_Power, Path_Loss = Path_Loss)
             self.Rad_progressBar.setValue(int((rowindx+1)*100/TotalSteps))
             set_freq_rf.append(freq)
@@ -1291,21 +1290,54 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 rowdata.append(table_item.text())
             calrftabgetdata.append(rowdata)
         if self.Calib_Radiation.isChecked():
-            self.calclass.RfCalUpdateToDB(calrffreqfrom=self.lineEdit_Rad_Start_Freq.text(), calrffreqto=self.lineEdit_Rad_Stop_Freq.text(), updatecaltbname='rfpathlossradmode',calrftabdata = calrftabgetdata)
+            self.CalRfPathLossClass.RfCalUpdateToDB(calrffreqfrom=self.lineEdit_Rad_Start_Freq.text(), calrffreqto=self.lineEdit_Rad_Stop_Freq.text(), updatecaltbname='rfpathlossradmode',calrftabdata = calrftabgetdata)
         elif self.Calib_Injection.isChecked():
-            self.calclass.RfCalUpdateToDB(calrffreqfrom=self.lineEdit_Rad_Start_Freq.text(), calrffreqto=self.lineEdit_Rad_Stop_Freq.text(), updatecaltbname='rfpathlossinjmode', calrftabdata=calrftabgetdata)
+            self.CalRfPathLossClass.RfCalUpdateToDB(calrffreqfrom=self.lineEdit_Rad_Start_Freq.text(), calrffreqto=self.lineEdit_Rad_Stop_Freq.text(), updatecaltbname='rfpathlossinjmode', calrftabdata=calrftabgetdata)
     ####################################################################################################################
     def CalRfPathExport(self):
         if self.Calib_Radiation.isChecked():
-            self.calclass.RfCalExport(exporttable='rfpathlossradmode')
+            self.CalRfPathLossClass.RfCalExport(exporttable='rfpathlossradmode')
         elif self.Calib_Injection.isChecked():
-            self.calclass.RfCalExport(exporttable='rfpathlossinjmode')
+            self.CalRfPathLossClass.RfCalExport(exporttable='rfpathlossinjmode')
 ########################################################################################################################
+    def CalbSystemRwr(self):
+        startrwrfreq = float(self.lineEdit_RWR_StartFreq.text())
+        stoprwrfreq = float(self.lineEdit_RWR_StopFreq.text())
+        steprwrfreq = float(self.lineEdit_RWR_StepFreq.text())
+        setrwrampl = float(self.lineEdit_RWR_Ampl.text())
+        self.CalbSystemRwrTableClass = CalRfPathLoss()
+        QApplication.processEvents()
+        time.sleep(1)
+        rwrfreq = startrwrfreq
+        rwrrowindx = 0
+        TotalSteps = (stoprwrfreq - startrwrfreq) / steprwrfreq
 
-
+        """set_freq_rf = []
+        path_loss_rf = []"""
+        while rwrfreq <= stoprwrfreq:
+            Meas_Power, Path_Loss = self.CalbSystemRwrTableClass.GetMeasurement(freq=rwrfreq, power=setrwrampl)
+            self.UpdateCalbSystemRwrTable(RwrTableIndx=rwrrowindx, Freq = rwrfreq, Meas_Power=Meas_Power, Path_Loss=Path_Loss)
+            self.Rad_progressBar.setValue(int((rwrrowindx + 1) * 100 / TotalSteps))
+            """set_freq_rf.append(freq)
+            path_loss_rf.append(Path_Loss)
+            #self.UpdateRfPathLossPlot(set_freq_list=set_freq_rf, path_loss_list=path_loss_rf)"""
+            QApplication.processEvents()
+            time.sleep(1)
+            rwrfreq = rwrfreq + steprwrfreq
+            rwrrowindx = rwrrowindx + 1
+    def UpdateCalbSystemRwrTable(self,RwrTableIndx = 0, Freq = 500, Meas_Power = 0, Path_Loss = 0):
+        self.RFPath_tableWidget.setRowCount(RwrTableIndx + 1)
+        self.RFPath_tableWidget.setItem(RwrTableIndx, 0, QTableWidgetItem(str(RwrTableIndx)))
+        self.RFPath_tableWidget.setItem(RwrTableIndx, 1, QTableWidgetItem(str(Freq)))
+        self.RFPath_tableWidget.setItem(RwrTableIndx, 2, QTableWidgetItem(str(Meas_Power)))
+        self.RFPath_tableWidget.setItem(RwrTableIndx, 3, QTableWidgetItem(str(Path_Loss)))
+        tableverticalscroll = self.RFPath_tableWidget.item(RwrTableIndx, 0)
+        self.RFPath_tableWidget.scrollToItem(tableverticalscroll, QAbstractItemView.PositionAtTop)
+        self.RFPath_tableWidget.selectRow(RwrTableIndx)
 ########################################################################################################################
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     win = MainGUI()
     win.show()
     sys.exit(app.exec_())
+

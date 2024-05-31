@@ -31,11 +31,11 @@ class PriMeasTestTableDB():
     ####################################################################################################################
     # This Function creates The  PRI Measurement Test Database Table
     ####################################################################################################################
-    def CreatePriMeasTestTableDB(self):
+    def CreatePriMeasTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_pri          FLOAT        NOT NULL,
                                          meas_pri         FLOAT        NOT NULL,

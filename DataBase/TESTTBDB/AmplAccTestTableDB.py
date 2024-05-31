@@ -31,11 +31,11 @@ class AmplAccTestTableDB():
     ####################################################################################################################
     # This Function creates The  Amplitude Accuracy Test Database Table
     ####################################################################################################################
-    def CreateAmplAccTestTableDB(self):
+    def CreateAmplAccTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_ampl          FLOAT        NOT NULL,
                                          meas_ampl         FLOAT        NOT NULL,

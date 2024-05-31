@@ -31,11 +31,11 @@ class DoaMeasTestTableDB():
     ####################################################################################################################
     # This Function creates The  DOA Measurement Test Database Table
     ####################################################################################################################
-    def CreateDoaMeasTestTableDB(self):
+    def CreateDoaMeasTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_angle          FLOAT        NOT NULL,
                                          meas_angle         FLOAT        NOT NULL,

@@ -10,8 +10,6 @@ from DataBase.RFPathLoss.RfPathLoss import RFPathLossDB
 class CalRfPathLoss():
     def __init__(self):
         self.rfpathlossdb = RFPathLossDB(Debug = True)
-        self.measpower = -30
-        self.path_loss = 5
     def RfCalUpdateToDB(self, calrffreqfrom='', calrffreqto='', updatecaltbname='', calrftabdata=[]):
         self.rfpathlossdb.DropRecordInRange(tablename=updatecaltbname,  freqfrom=calrffreqfrom, freqto=calrffreqto)
         rflosstable = pd.DataFrame(calrftabdata, columns=["s.no", "frequency", "set_power", "meas_power", "path_loss"])

@@ -30,11 +30,11 @@ class SensMeasTestTableDB():
     ####################################################################################################################
     # This Function creates The  Sensitivity Measurement Test Database Table
     ####################################################################################################################
-    def CreateSensMeasTestTableDB(self):
+    def CreateSensMeasTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_power         FLOAT        NOT NULL,
                                          meas_sens         FLOAT        NOT NULL,

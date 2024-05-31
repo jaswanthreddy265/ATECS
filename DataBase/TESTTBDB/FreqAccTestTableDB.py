@@ -27,15 +27,15 @@ class FreqAccTestTableDB():
         self.connection = Connect_to_Database()
         self.connestablish = self.connection.connection
         timestamp = datetime.now()
-        self.tablename= f'''freqacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
+        #self.tablename= f'''freqacctest_{timestamp.strftime("%Y_%m_%d_%H_%M_%S")}'''
     ####################################################################################################################
     # This Function creates The  Frequency Accuracy Test Database Table
     ####################################################################################################################
-    def CreateFreqAccTestTableDB(self):
+    def CreateFreqAccTestTableDB(self, system=''):
         try:
             self.connestablish = self.connection.connection
             cursor = self.connestablish.cursor()
-            create_table_query = f'''CREATE TABLE IF NOT EXISTS {self.tablename}
+            create_table_query = f'''CREATE TABLE IF NOT EXISTS {system}{self.tablename}
                                      (
                                          set_freq          FLOAT        NOT NULL,
                                          meas_freq         FLOAT        NOT NULL,
