@@ -4,13 +4,14 @@ from time import sleep
 import pandas as pd
 from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView
 
-from DataBase.RFPathLoss.RfPathLoss import RFPathLossDB
+from DataBase.CalibrationTab.RfPathLoss import RFPathLossDB
 
 
 class CalRfPathLoss():
     def __init__(self):
-        self.rfpathlossdb = RFPathLossDB(Debug = True)
+        pass
     def RfCalUpdateToDB(self, calrffreqfrom='', calrffreqto='', updatecaltbname='', calrftabdata=[]):
+        self.rfpathlossdb = RFPathLossDB(Debug = True)
         self.rfpathlossdb.DropRecordInRange(tablename=updatecaltbname,  freqfrom=calrffreqfrom, freqto=calrffreqto)
         rflosstable = pd.DataFrame(calrftabdata, columns=["s.no", "frequency", "set_power", "meas_power", "path_loss"])
         appenddata = rflosstable.drop(rflosstable.columns[[0, 2, 3]], axis=1)
