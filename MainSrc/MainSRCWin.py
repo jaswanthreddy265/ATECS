@@ -1225,7 +1225,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
 
         set_freq_rf = []
         path_loss_rf = []
-        while freq <= stopfreq:
+        while freq < stopfreq:
             Meas_Power, Path_Loss = self.CalRfPathLossClass.GetMeasurement(freq = freq, power = setampl)
             self.UpdatePathLossTable(TableIndx = rowindx, Freq = freq, Meas_Power = Meas_Power, Path_Loss = Path_Loss)
             self.RFPath_progressBar.setValue(int((rowindx+1)*100/TotalSteps))
@@ -1290,7 +1290,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         setrwrampl = float(self.lineEdit_Amplitude.text())
         setrwramplcal_pw=float(self.lineEdit_Ampl_PW.text())
         setrwramplcal_pri=float(self.lineEdit_Ampl_PRI.text())
-
         self.CalbSystemRwrTable = CalibrationOperations()
         QApplication.processEvents()
         time.sleep(1)
@@ -1328,7 +1327,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
     def UpdateAntennaTable(self, data=[]):
         self.Ampl_tableWidget.setColumnCount(2)
         self.Ampl_tableWidget.setHorizontalHeaderLabels(['frequency', 'amplitude'])
-
         antennadata = data[0].astype(str)
         no_of_rows = antennadata.shape[0]
         no_of_cols = antennadata.shape[1]
