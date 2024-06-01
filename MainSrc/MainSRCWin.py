@@ -9,7 +9,7 @@ from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QMdiSubWindow, QTableWidgetItem, QMessageBox, \
     QAbstractItemView
 
-from Calibration.CalRfPathLoss import CalRfPathLoss
+from Calibration.CalRfPathLoss import CalibrationOperations
 from DataBase.INDXTBDB.AmplAccIndxTableDB import AmplAccIndxTableDB
 from DataBase.INDXTBDB.DOAMeasIndxTableDB import DoaMeasIndxTableDB
 from DataBase.INDXTBDB.FreqAccIndxTableDB import FreqAccIndxTableDB
@@ -68,6 +68,9 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         self.RFPathls_grph = self.RFPath_Loss_Graph.addPlot(row=0, col=0)
         self.PB_RFPath_Export.clicked.connect(self.CalRfPathExport)
         self.PB_RFPath_Update.clicked.connect(self.RfPathDBUpdate)
+        ###
+        self.PB_Ampl_Calibrate.clicked.connect(self.AmplCalbRwr)
+        self.PB_Ampl_Read_Target.clicked.connect(self.UpdateAntennaTab)
 
         # Graohs Disabled for Network Setting
         self.frame_NET_ESMTracks.setDisabled(True)
@@ -919,7 +922,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
             dataappend = pd.concat( [freqdataappend, pwdataappend, pridataappend, ampldataappend, doadataappend, sensmeasdataappend],
                 ignore_index=True)
             print(dataappend)
-            self.PlotGraph.setLabel( "left", '<span style="color: purple; font-size: 18px">Error </span>' )
 
         elif (self.Reports_Test.currentText() == 'Frequency Test'):
             self.Reports_ErrorGraph.show()
@@ -1052,6 +1054,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
 
         for i in range(0, len(TableSelection)):
             ForTablename = TableSelection[i]
+            self.PlotGraph.addLegend()
             if (self.Reports_Test.currentText() == 'Frequency Test'):
                 GetFreqTestTable = FreqAccTestTableDB()
                 GetFreqTestTable.GetFreqAccTestTable(testtablename=ForTablename)
@@ -1061,7 +1064,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setfreqvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setfreqvalue, self.errorvalue,
@@ -1076,7 +1078,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setpwvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setpwvalue, self.errorvalue,
@@ -1091,7 +1092,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setanglevalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setanglevalue, self.errorvalue,
@@ -1106,7 +1106,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setfreqvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setfreqvalue, self.errorvalue,
@@ -1122,7 +1121,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setamplvalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setamplvalue, self.errorvalue,
@@ -1138,7 +1136,6 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
                 self.setprivalue = [float(i) for i in leftlabel]
                 bottomlabel = dfreadtoui["error"].tolist()
                 self.errorvalue = [float(i) for i in bottomlabel]
-                self.PlotGraph.addLegend()
                 self.PlotGraph.setYRange(-100, 100)
                 self.rgb_full = (random.randint(1, 255), random.randint(1, 255), random.randint(1, 255))
                 self.PlotGraph.plot(self.setprivalue, self.errorvalue,
@@ -1219,7 +1216,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         stopfreq = float(self.lineEdit_RFPath_Stop_Freq.text())
         stepfreq = float(self.lineEdit_RFPath_Step_Freq.text())
         setampl = float(self.lineEdit_RFPath_Ampl.text())
-        self.CalRfPathLossClass = CalRfPathLoss()
+        self.CalRfPathLossClass = CalibrationOperations()
         QApplication.processEvents()
         time.sleep(1)
         freq = startfreq
@@ -1256,7 +1253,7 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
         setfreqvalue = [float(i) for i in set_freq_list]
         pathlossvalue = [float(i) for i in path_loss_list]
         self.RFPathls_grph.setYRange(-30, 30)
-        #self.PlotGraph.addLegend()
+        #self.RFPathls_grph.addLegend()
         #self.RFPathls_grph.plot(setfreqvalue, pathlossvalue, pen='r', width=5, style=QtCore.Qt.SolidLine )
         if self.Calib_Radiation.isChecked():
             self.RFPathls_grph.plot(setfreqvalue, pathlossvalue, pen='m', width=2, name='radiation')
@@ -1283,7 +1280,97 @@ class MainGUI(QMainWindow, Ui_ATEC_App):
             self.CalRfPathLossClass.RfCalExport(exporttable='rfpathlossradmode')
         elif self.Calib_Injection.isChecked():
             self.CalRfPathLossClass.RfCalExport(exporttable='rfpathlossinjmode')
+    ####################################################################################################################
+    def AmplCalbRwr(self):
+        self.Ampl_tableWidget.setColumnCount(5)
+        self.Ampl_tableWidget.setHorizontalHeaderLabels(['SNo', 'Input_Frequency','Input_Amplitude','Measured_Amplitude', 'Gain'])
+        startrwrfreq = float(self.lineEdit_Ampl_StartFreq.text())
+        stoprwrfreq = float(self.lineEdit_Ampl_StopFreq.text())
+        steprwrfreq = float(self.lineEdit_Ampl_StepFreq.text())
+        setrwrampl = float(self.lineEdit_Amplitude.text())
+        setrwramplcal_pw=float(self.lineEdit_Ampl_PW.text())
+        setrwramplcal_pri=float(self.lineEdit_Ampl_PRI.text())
 
+        self.CalbSystemRwrTable = CalibrationOperations()
+        QApplication.processEvents()
+        time.sleep(1)
+        rwrfreq = startrwrfreq
+        rwrrowindx = 0
+        TotalSteps = (stoprwrfreq - startrwrfreq) / steprwrfreq
+        while rwrfreq <= stoprwrfreq:
+            Meas_Power, RwrAmpl_Gain = self.CalbSystemRwrTable.GetRwrAmplMeasurement(amplcalfreq=rwrfreq, amplcalinputpower=setrwrampl, amplcal_pw= setrwramplcal_pw, amplcal_pri= setrwramplcal_pri)
+            self.UpdateCalbSystemRwrTable(RwrTableIndx=rwrrowindx, Input_Ampl=setrwrampl, Input_Frequency = rwrfreq, Meas_Ampl=Meas_Power, Ampl_Gain=RwrAmpl_Gain)
+            self.Ampl_progressBar.setValue(int((rwrrowindx + 1) * 100 / TotalSteps))
+            QApplication.processEvents()
+            time.sleep(1)
+            rwrfreq = rwrfreq + steprwrfreq
+            rwrrowindx = rwrrowindx + 1
+    ####################################################################################################################
+    def UpdateCalbSystemRwrTable(self,RwrTableIndx = 0, Input_Ampl=0, Input_Frequency = 500, Meas_Ampl = 0, Ampl_Gain = 0):
+        self.Ampl_tableWidget.setRowCount(RwrTableIndx + 1)
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 0, QTableWidgetItem(str(RwrTableIndx)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 1, QTableWidgetItem(str(Input_Ampl)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 2, QTableWidgetItem(str(Input_Frequency)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 3, QTableWidgetItem(str(Meas_Ampl)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 4, QTableWidgetItem(str(Ampl_Gain)))
+        tableverticalscroll = self.Ampl_tableWidget.item(RwrTableIndx, 0)
+        self.Ampl_tableWidget.scrollToItem(tableverticalscroll, QAbstractItemView.PositionAtTop)
+        self.Ampl_tableWidget.selectRow(RwrTableIndx)
+    ####################################################################################################################
+    def UpdateAntennaTab(self):
+        self.Ampl_tableWidget.setColumnCount(2)
+        self.Ampl_tableWidget.setHorizontalHeaderLabels(['frequency', 'amplitude'])
+        antdata1, antdata2, antdata3, antdata4, antdata5= self.CalbSystemRwrTable.RwrCalAntennaDataFromTarget()
+        AntennaDataList=[f'{antdata1}', f'{antdata2}', f'{antdata3}', f'{antdata4}', f'{antdata5}']
+        self.UpdateAntennaTable(data=AntennaDataList)
+        """for i in range(0,5):
+            self.CalbSystemRwrTable.RwrCalAmplAntToDb(ant_no=i, data=AntennaDataList[i])"""
+    def UpdateAntennaTable(self, data=[]):
+        self.Ampl_tableWidget.setColumnCount(2)
+        self.Ampl_tableWidget.setHorizontalHeaderLabels(['frequency', 'amplitude'])
+
+        antennadata = data[0].astype(str)
+        no_of_rows = antennadata.shape[0]
+        no_of_cols = antennadata.shape[1]
+        for row in range(no_of_rows):
+            self.Reports_Table.setRowCount(row + 1)
+            for col in range(no_of_cols):
+                self.Reports_Table.setItem(row, col, QTableWidgetItem(antennadata.iloc[row][col]))
+
+        pass
+        #self.CalbSystemRwrTable.RwrCalAmplAntToDb(ant_no=, date = )
+
+    """def RwrAdfSlopeCal(self):
+        startrwrfreq = float(self.lineEdit_Ampl_StartFreq.text())
+        stoprwrfreq = float(self.lineEdit_Ampl_StopFreq.text())
+        steprwrfreq = float(self.lineEdit_Ampl_StepFreq.text())
+        setrwrampl = float(self.lineEdit_Amplitude.text())
+        self.CalbSystemRwrTable = CalibrationOperations()
+        QApplication.processEvents()
+        time.sleep(1)
+        rwrfreq = startrwrfreq
+        rwrrowindx = 0
+        TotalSteps = (stoprwrfreq - startrwrfreq) / steprwrfreq
+        while rwrfreq <= stoprwrfreq:
+            Meas_Power, RwrAmpl_Gain = self.CalbSystemRwrTable.GetRwrAmplMeasurement(freq=rwrfreq, power=setrwrampl)
+            self.UpdateCalbSystemRwrTable(RwrTableIndx=rwrrowindx, Input_Ampl=setrwrampl, Input_Frequency = rwrfreq, Meas_Ampl=Meas_Power, Ampl_Gain=RwrAmpl_Gain)
+            self.Ampl_progressBar.setValue(int((rwrrowindx + 1) * 100 / TotalSteps))
+
+            QApplication.processEvents()
+            time.sleep(1)
+            rwrfreq = rwrfreq + steprwrfreq
+            rwrrowindx = rwrrowindx + 1
+    ####################################################################################################################
+    def UpdateCalbSystemRwrTable(self,RwrTableIndx = 0, Input_Ampl=0, Input_Frequency = 500, Meas_Ampl = 0, Ampl_Gain = 0):
+        self.Ampl_tableWidget.setRowCount(RwrTableIndx + 1)
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 0, QTableWidgetItem(str(RwrTableIndx)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 1, QTableWidgetItem(str(Input_Ampl)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 2, QTableWidgetItem(str(Input_Frequency)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 3, QTableWidgetItem(str(Meas_Ampl)))
+        self.Ampl_tableWidget.setItem(RwrTableIndx, 4, QTableWidgetItem(str(Ampl_Gain)))
+        tableverticalscroll = self.Ampl_tableWidget.item(RwrTableIndx, 0)
+        self.Ampl_tableWidget.scrollToItem(tableverticalscroll, QAbstractItemView.PositionAtTop)
+        self.Ampl_tableWidget.selectRow(RwrTableIndx)"""
 ########################################################################################################################
 if __name__ == "__main__":
     app = QApplication(sys.argv)

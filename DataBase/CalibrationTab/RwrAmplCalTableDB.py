@@ -3,22 +3,21 @@ from datetime import datetime
 import pandas as pd
 import psycopg2
 from DataBase.UserManagement.ConnectDB import Connect_to_Database
-from DataBase.UserManagement.ErrorCodesDatabase import SUCCESS, DATABASE_ADDDATA_ERROR
+from DataBase.UserManagement.ErrorCodesDatabase import *
 from sqlalchemy import create_engine
 
 ########################################################################################################################
 #   RWR or WARNER Amplitude Calibration Table Database Class and Member Functions
 #   Author  :   Bandi Jaswanth Reddy
-#   Date    :   31 May 2024
+#   Date    :   01 June 2024
 #   RwrAmplCalbDB Class has the following member Functions
 #   1. init()
-#   2. CreateRwrAmplCalbDB()
-#   3. AddRecord()
-#   4. DropRecord()
-#   5. DropRecordInRange()
-#   6. RetrieveRecordInRange()
-#   7. RetrieveAll()
-#   8. FreqIndxDbConClose()
+#   2. CreateRwrAmplCalTable()
+#   3. DropAmplCalFreqRecordInRange()
+#   4. RetrieveAmplCalFreqRecordInRange()
+#   5. RetrieveAmplCalTable()
+#   6. DfUpdateToAmplCalTable()
+#   7. RwrAmplCalDbConClose()
 ########################################################################################################################
 # This Creating the RwrAmplCalbDB Class
 ########################################################################################################################
@@ -27,7 +26,6 @@ class RwrAmplCalbTableDB():
         self.Debug = Debug
         self.connection = Connect_to_Database()
         self.connestablish = self.connection.connection
-
     ####################################################################################################################
     # This Function creates The RWR/WARNER Amplitude Calibration Database Table
     ####################################################################################################################
@@ -160,29 +158,4 @@ if __name__ == "__main__":
     #demotest.DropAmplCalFreqRecordInRange(tablename=demotest.tablename, amplcal_freqfrom=4000, amplcal_freqto=6000 )
     #demotest.RetrieveAmplCalFreqRecordInRange(tablename=demotest.tablename, rangefrom=400, rangeto=40000)
     #demotest.RetrieveAmplCalTable(tablename=demotest.tablename)
-
-    """newrow = {'frequency':'700','path_loss':5}
-    start_freq = 30100
-    stop_freq = 39999
-    step_freq = 100
-    while start_freq<=stop_freq:
-        print(start_freq)
-        newrow['frequency'] = start_freq
-        newrow['path_loss'] = float(newrow['frequency'])-5
-        demotest.AddRecord(lossrecord=newrow)
-        start_freq += step_freq
-    demotest.DeleteRecord(freqrecord='4000')
-    demotest.RetrieveAll(tablename='rfpathlossradmode')
-    demotest.RetrieveRecordInRange(tablename='rfpathlossradmode', rangefrom='1000', rangeto='3500')
-    #demotest.DropRecordInRange(tablename='rfpathlossinjmode', freqfrom=35000,freqto=40000)
-
-    #demotest.RetrieveAll(tablename='rfpathlossinjmode')
-    data = {
-              "frequency": [500, 600, 650],
-              "path_loss": [60, 50, 95]
-            }
-    demotest.DfUpdateDbTable(updatedata=data,tablename='rfpathlossradmode')
-    demotest.RetrieveAll(tablename='rfpathlossinjmode')
-    demotest.CurDbTable.to_csv('rfpathlosstableasc_order.csv')
-    #       rfpathlossinjmode_2024_05_31_14_16_51"""
 #######################################################################################################################

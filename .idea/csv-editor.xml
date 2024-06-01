@@ -17,13 +17,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="\DataBase\RFPathLoss\rfpathlosstableasc_order.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\MainSrc\rfpathlosstableasc_order.csv">
           <value>
             <Attribute>
